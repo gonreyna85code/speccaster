@@ -20,6 +20,7 @@ jobs:
         run: npm test
         working-directory: products/speccaster
       - name: Publish
+        if: ${{ secrets.NPM_TOKEN != '' }}
         run: npm publish --access public
         working-directory: products/speccaster
         env:
