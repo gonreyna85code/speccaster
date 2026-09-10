@@ -15,10 +15,18 @@ experiment:
   failure_metric: <10 unique installs and <20 stars by deadline.
   start_date: 2026-09-10
   deadline: 2026-10-25
-  result: pending
+  result: MVPs core done + e2e 5/5 green (2026-09-10). PUBLIC LAUNCH NOT YET DONE —
+    blocked on owner credentials: npm publish token, GitHub account, (later) Lemon
+    Squeezy API key + payout method. Costs spent: $0.00.
   decision: pending   # SCALE | ITERATE | PAUSE | KILL
 ```
 Launch is BLOCKED on: owner GitHub account + npm publish token (credentials).
+
+## EXP-000 — ERD generator (killed before launch)
+- hypothesis: Auto-updating DB schema ERD in CI is an open dev-tool gap.
+- evidence against: Mermerd (614★) and mermaid-erd-cli (feature-parity, 2026) already
+  ship this exact shape; same-shape entry has no moat.
+- decision: KILL before spending build time.
 
 Template:
 ```yaml

@@ -28,7 +28,7 @@ lesson:
   dev-tool margins 76.8%). Generic AI wrappers are the most crowded, lowest-margin category (~$1.7K MRR
   avg across 1200+ products) → avoided.
 - expected_result: A working, testable dev tool MVP in this repo, with a documented monetization + distribution path.
-- actual_result: Pending (MVP in build).
+- actual_result: Confirmed — SpecProof MVP built, e2e green, monetization plan in `products/specproof/docs/MONETIZATION.md`.
 - lesson: ETOOMANY competitor CLIs already ship the "generate ERD from DB" shape → KILLED that angle
   (would have been a same-shape entry with no moat).
 
@@ -43,5 +43,7 @@ lesson:
 - evidence: See D-002 sources + competitor scan (Mermerd, mermaid-erd-cli, dbcli, LLMSchema exist for ERD;
   Schemathesis/Dredd are the contract-test incumbents but not zero-config Node DX).
 - expected_result: Shipped MVP with demo test run passing; landing page + action + publish config prepared.
-- actual_result: Pending.
-- lesson: -
+- actual_result: Built v0.1.0 (CLI init/test/drift + GitHub Action + landing page). E2E 5/5 green.
+  Launch blocked on owner credentials (npm token, GitHub), not on product debt.
+- lesson: Base-URL overrides must follow the "replace whole server URL incl. mount path"
+  convention consistently; generated exit codes must propagate through the bin wrapper.
