@@ -37,6 +37,8 @@ function parseArgs(argv) {
       opt.force = true;
     } else if (a === '--help' || a === '-h') {
       opt.help = true;
+    } else if (a === '--version' || a === '-V') {
+      opt.version = true;
     } else if (a.startsWith('--')) {
       opt[a.slice(2).replace(/-/g, '_')] = true;
     } else {
@@ -72,8 +74,8 @@ async function main(argv) {
   const spec = opt.spec || 'openapi.yaml';
   const out = opt.out || 'speccaster/contract.test.js';
 
+  if (opt.version || cmd === 'version') return void console.log(require('../package.json').version);
   if (cmd === 'help' || opt.help) return void console.log(USAGE);
-  if (cmd === 'version') return void console.log(require('../package.json').version);
 
   if (cmd === 'init') {
     if (fs.existsSync(out) && !opt.force) {

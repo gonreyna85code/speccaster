@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T23:30:00Z",
+  "updated_at": "2026-09-10T23:34:00Z",
   "status": "experimentation",
   "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
   "current_strategy": "validate EXP-001 (adoption) before monetizing; ship free MVP publicly, hold pricing until user data exists",
@@ -29,8 +29,8 @@
   "conversion_rate": null,
   "experiments": ["EXP-001"],
   "active_services": [
-    "SpecCaster npm package — PUBLISHED speccaster@0.1.0 (https://www.npmjs.com/package/speccaster, 2026-09-10T23:28:50Z); install+init+drift+test verified against registry build",
-    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live",
+    "SpecCaster npm package — PUBLISHED speccaster@0.1.1 (latest; 0.1.0 verified, 0.1.1 adds --version + traceable header); URL https://www.npmjs.com/package/speccaster",
+    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live; topic openapi3 set (awesome-openapi3 crawler pickup)",
     "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200"
   ],
   "metrics_baseline": {

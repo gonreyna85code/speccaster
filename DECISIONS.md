@@ -98,3 +98,16 @@ lesson:
 - actual_result: Pending — waiting on owner OTP or granular publish token (blocker recorded in state).
 - lesson: Publishing blocks on account policy, not code; do not chain release-mechanic changes
   into the fix.
+
+## D-008 — 2026-09-10
+- decision: Publish with the owner-provided granular npm token (2FA bypass enabled); keep the
+  token external to this repo (env-only). Release 0.1.0 base, then 0.1.1 patch for --version
+  + traceable generated-file header.
+- reason: §3 release discipline and §28 (publish is a normal operational decision once a
+  working credential exists).
+- evidence: whoami→gonreyna85code with token; E403 resolved on second token (bypass). Base
+  verified: clean-registry install + init + drift + test 3/3 vs live API.
+- expected_result: Publshed latest usable; installs begin counting toward EXP-001.
+- actual_result: speccaster 0.1.0 + 0.1.1 live (dist-tags.latest=0.1.1); verified from clean install.
+- lesson: After a 2FA-blocking publish, re-check dist-tags.latest and the packument, not just the
+  publish success line; npm metadata can lag the PUT.

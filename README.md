@@ -14,7 +14,7 @@ payment provider or wallet.
 - Infrastructure: local workspace (Node 24, Python 3.13, Git, Docker available)
 - Capital: NOT CONFIGURED (pending owner)
 - Payment processing: NOT CONFIGURED (pending owner Lemon Squeezy account + API key + payout method)
-- Package registry: **LIVE** — `speccaster@0.1.0` published, verified install + CLI (init/test/drift)
+- Package registry: **LIVE** — `speccaster@0.1.1` published (verified install + CLI: init/test/drift/--version)
 - Live revenue: **$0.00** — nothing claimed until confirmed
 - Launch: npm publish blocked on owner npm token (GitHub ORB unblocked)
 
