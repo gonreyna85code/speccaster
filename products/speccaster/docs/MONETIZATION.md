@@ -12,6 +12,22 @@ Status: free MIT MVP; **no revenue yet, none claimed**. The experiment is
     and one-time pricing beats subscriptions for small utilities (ShipFast,
     Carrd, tearoff.app patterns, 2026).
 
+## Market evidence (2026-09-10)
+- **Stoplight platform**: Basic $44/mo, Startup $113/mo, Pro Team $362/mo
+  (per team, per month; first users free). Spectral itself is free open-source.
+  → teams already pay far more than our price when API governance hurts enough.
+- **Schemathesis**: free MIT open-source CLI (+ commercial cloud). Not a direct
+  substitute (property-based fuzzing vs. owned `node:test` suite), but proves
+  spec-to-test tooling is a saturated, well-funded space.
+- **Dredd**: assessed as "largely abandoned" (2026 community write-ups) →
+  deterministic spec-game contract testing has no maintained modern incumbent
+  in the JS/`node:test` space. This is our positioning gap.
+- **Pricing takeaway**: $19 one-time is deliberately below Stoplight's $44/mo
+  per user and below a friction-inducing $49. It tests willingness-to-pay with
+  minimal buyer risk. If 0 conversions at $19 within 4–6 weeks of a live
+  checkout, iterate price (raise/lower), or pivot the Pro framing (repos → orgs
+  → support). All pricing stays provisional until real purchases validate it.
+
 ## Mechanics (Lemon Squeezy, user-owned store)
 - Merchant of Record: sales tax/VAT handled; payouts to owner's bank/PayPal.
 - `ls: 5% + $0.50` avoids low price points (< $10) that the flat fee eats.

@@ -52,6 +52,27 @@ Each gets a deadline + success/failure metric; run autonomously, recorded here.
 - success_metric: EXP-001 targets. failure_metric: <5 installs and <10 stars within 7 days of posting.
 ```
 Launch block: npm publish token (owner). GitHub no longer blocks.
+```
+
+### EXP-001-D4 — `demo` activation command (0.2.0, publish blocked on npm token)
+- hypothesis: An instant proof-of-value (`npx speccaster demo`: ephemeral API +
+  generated suite + drift demo, nothing written) converts visitors into activated users.
+- channel: npm quickstart + landing + README; new users' first command.
+- action: Built src/demo.js (embedded spec + in-process API); runs generated tests
+  via async child so the in-process server can serve them (spawnSync deadlocks on
+  same-thread server). Covered by e2e (demo + --version cases). e2e 7/7 green.
+- cost: 0. deadline: none (part of activation loop).
+- success_metric: demo path converges to `init` (activation), fewer dead-end installs.
+  failure_metric: demo exits non-zero for users.
+- status: READY at 0.2.0, NOT published — npm token with 2FA bypass needed (INC-001).
+
+## Pricing evidence (2026-09-10)
+- Stoplight platform: Basic $44/mo → Pro Team $362/mo (per team, monthly). Spectral is free OSS.
+- Schemathesis: free MIT OSS + commercial cloud; property-based (not the same wedge).
+- Dredd: widely judged "largely abandoned" → deterministic no-longer-maintained?
+  Gap: maintained spec-game contract testing in the JS/node:test space.
+- Keep $19 one-time Pro (validated by 0-conversion iteration + first-payer psych), documented
+  in products/speccaster/docs/MONETIZATION.md.
 
 ## EXP-000 — ERD generator (killed before launch)
 - hypothesis: Auto-updating DB schema ERD in CI is an open dev-tool gap.

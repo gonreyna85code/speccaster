@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T23:34:00Z",
+  "updated_at": "2026-09-10T23:55:00Z",
   "status": "experimentation",
   "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
-  "current_strategy": "validate EXP-001 (adoption) before monetizing; ship free MVP publicly, hold pricing until user data exists",
+  "current_strategy": "validate EXP-001 (adoption) before monetizing; refine activation (demo command); pricing evidence-collected; publish 0.2.0 blocked on npm 2FA-bypass token",
   "revenue": {
     "lifetime": 0.0,
     "current_month": 0.0
@@ -29,27 +29,35 @@
   "conversion_rate": null,
   "experiments": ["EXP-001"],
   "active_services": [
-    "SpecCaster npm package — PUBLISHED speccaster@0.1.1 (latest; 0.1.0 verified, 0.1.1 adds --version + traceable header); URL https://www.npmjs.com/package/speccaster",
-    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live; topic openapi3 set (awesome-openapi3 crawler pickup)",
+    "SpecCaster npm package — PUBLISHED speccaster@0.1.1 (latest; 0.2.0 with demo command READY, publish blocked on npm granular 2FA-bypass token); URL https://www.npmjs.com/package/speccaster",
+    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live, main = c943cd8; topic openapi3 set",
     "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200"
   ],
   "metrics_baseline": {
-    "npm_downloads": 0,
+    "npm_downloads": null,
     "github_stars": 0,
     "github_open_issues": 0,
     "landing_status": 200,
     "recorded_at": "2026-09-10",
-    "note": "baseline pre-publish; npm installs from owner machine count toward downloads after publish"
+    "note": "npm downloads API not yet reporting (post-publish lag); check-metrics.js handles gracefully"
   },
-  "incidents": [],
+  "incidents": [
+    {
+      "date": "2026-09-10T23:41:00Z",
+      "id": "INC-001",
+      "severity": "low",
+      "title": "npm publish blocked: 2FA bypass required",
+      "description": "~/.npmrc holds the classic token (npm_SXNG...Hh5M) which authenticates but cannot publish (E403, bypass 2FA required). The granular bypass token (npm_E8Hz...R7wN) was in-memory only per policy and is not persisted anywhere recoverable. speccaster@0.2.0 (demo command) ready to publish once the bypass token is re-provided."
+    }
+  ],
   "technical_health": "nominal",
   "financial_health": "unfunded",
   "next_actions": [
-    "EXECUTE distribution now package is live: Show HN + r/node posts (need owner HN/Reddit accounts or owner posts), awesome-openapi3 PR, directory submissions",
-    "run check-metrics daily (memory/metrics.jsonl); drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
+    "OWNER: re-provide npm granular token with 2FA bypass (npm_E8Hz...R7wN uses it) OR add it as repo Actions secret NPM_TOKEN for automated tag-publish; .npmrc classic token will always fail",
+    "publish speccaster@0.2.0 (demo activation command), verify clean install, push v0.2.0 tag + GitHub Release notes",
+    "Start GitHub Discussions welcome post; run check-metrics daily; drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
     "owner provisions Lemon Squeezy account + API key + payout method -> enable fiat block",
-    "post Show HN / r/node / build-in-public update",
-    "track stars, installs, issues weekly",
+    "post Show HN / r/node / build-in-public update (copy ready in docs/LAUNCH.md)",
     "calibrate Pro pricing when adoption data exists"
   ]
 }
