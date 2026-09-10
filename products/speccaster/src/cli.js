@@ -4,7 +4,7 @@ const os = require('os');
 const { spawnSync } = require('child_process');
 const { generate, writeGenerated } = require('./generate');
 
-const WORKFLOW_TEMPLATE = `name: specproof
+const WORKFLOW_TEMPLATE = `name: speccaster
 on:
   pull_request:
   push:
@@ -20,11 +20,11 @@ jobs:
           node-version: 20
       # Optionally spin up your API here (docker-compose / npm start)
       - name: Regenerate + drift gate
-        run: npx -y specproof@latest drift --spec openapi.yaml --out specproof/contract.test.js
+        run: npx -y speccaster@latest drift --spec openapi.yaml --out speccaster/contract.test.js
       - name: Run contract tests
         env:
-          SPECPROOF_BASE_URL: \$\{{ secrets.SPECPROOF_BASE_URL }}
-        run: node --test specproof/contract.test.js
+          SPECCASTER_BASE_URL: \$\{{ secrets.SPECCASTER_BASE_URL }}
+        run: node --test speccaster/contract.test.js
 `;
 
 function parseArgs(argv) {
@@ -46,19 +46,19 @@ function parseArgs(argv) {
   return opt;
 }
 
-const USAGE = `specproof — zero-config contract tests from your OpenAPI spec
+const USAGE = `speccaster — zero-config contract tests from your OpenAPI spec
 
 Usage:
-  specproof init   [--spec <file>] [--out <file>] [--base-url <url>] [--force]
-  specproof test    [--spec <file>] [--out <file>] [--base-url <url>]
-  specproof drift   [--spec <file>] [--out <file>] [--base-url <url>]
+  speccaster init   [--spec <file>] [--out <file>] [--base-url <url>] [--force]
+  speccaster test    [--spec <file>] [--out <file>] [--base-url <url>]
+  speccaster drift   [--spec <file>] [--out <file>] [--base-url <url>]
 
-  init   Write the contract test suite (default out: specproof/contract.test.js)
-         and emit .github/workflows/specproof.yml. Fails if out exists unless --force.
+  init   Write the contract test suite (default out: speccaster/contract.test.js)
+         and emit .github/workflows/speccaster.yml. Fails if out exists unless --force.
   test   Generate to a temp file and run it (node --test).
   drift  Exit non-zero if out is out of date with the spec. For CI.
 
-Env: SPECPROOF_BASE_URL overrides the server url from the spec.
+Env: SPECCASTER_BASE_URL overrides the server url from the spec.
 `;
 
 function runNodeTest(file) {
@@ -70,7 +70,7 @@ async function main(argv) {
   const opt = parseArgs(argv);
   const cmd = opt._[0] || 'help';
   const spec = opt.spec || 'openapi.yaml';
-  const out = opt.out || 'specproof/contract.test.js';
+  const out = opt.out || 'speccaster/contract.test.js';
 
   if (cmd === 'help' || opt.help) return void console.log(USAGE);
   if (cmd === 'version') return void console.log(require('../package.json').version);
@@ -82,32 +82,32 @@ async function main(argv) {
     const gen = generate({ spec, out, baseUrl: opt.base_url });
     writeGenerated({ content: gen.content, out });
     fs.mkdirSync('.github/workflows', { recursive: true });
-    fs.writeFileSync('.github/workflows/specproof.yml', WORKFLOW_TEMPLATE);
-    console.log('[specproof] wrote', out, `(${gen.content.split('\n').filter((l) => l.trim()).length} lines, ${gen.spec.paths ? Object.keys(gen.spec.paths).length : 0} paths)`);
-    console.log('[specproof] wrote .github/workflows/specproof.yml');
+    fs.writeFileSync('.github/workflows/speccaster.yml', WORKFLOW_TEMPLATE);
+    console.log('[speccaster] wrote', out, `(${gen.content.split('\n').filter((l) => l.trim()).length} lines, ${gen.spec.paths ? Object.keys(gen.spec.paths).length : 0} paths)`);
+    console.log('[speccaster] wrote .github/workflows/speccaster.yml');
     return 0;
   }
 
   if (cmd === 'test') {
     const gen = generate({ spec, out, baseUrl: opt.base_url });
-    const tmp = path.join(os.tmpdir(), 'specproof-contract.test.js');
+    const tmp = path.join(os.tmpdir(), 'speccaster-contract.test.js');
     writeGenerated({ content: gen.content, out: tmp });
-    console.log('[specproof] running', gen.content.split('\n').filter((l) => l.trim()).length, 'lines of tests');
+    console.log('[speccaster] running', gen.content.split('\n').filter((l) => l.trim()).length, 'lines of tests');
     return runNodeTest(tmp);
   }
 
   if (cmd === 'drift') {
     if (!fs.existsSync(out)) {
-      console.error('[specproof] missing', out, '— run `npx specproof init` first.');
+      console.error('[speccaster] missing', out, '— run `npx speccaster init` first.');
       return 1;
     }
     const current = fs.readFileSync(out, 'utf8').trim();
     const fresh = generate({ spec, out, baseUrl: opt.base_url }).content.trim();
     if (current === fresh) {
-      console.log('[specproof] OK — contract test suite is in sync with the spec.');
+      console.log('[speccaster] OK — contract test suite is in sync with the spec.');
       return 0;
     }
-    console.error('[specproof] DRIFT detected — the spec changed but', out, 'did not. Run `npx specproof init --force`.');
+    console.error('[speccaster] DRIFT detected — the spec changed but', out, 'did not. Run `npx speccaster init --force`.');
     return 1;
   }
 

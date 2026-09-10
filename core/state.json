@@ -2,7 +2,7 @@
   "version": 1,
   "updated_at": "2026-09-10T00:00:00Z",
   "status": "experimentation",
-  "current_business": "SpecProof — zero-config OpenAPI contract-test generator (dev tool)",
+  "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
   "current_strategy": "validate EXP-001 (adoption) before monetizing; ship free MVP publicly, hold pricing until user data exists",
   "revenue": {
     "lifetime": 0.0,
@@ -28,12 +28,15 @@
   },
   "conversion_rate": null,
   "experiments": ["EXP-001"],
-  "active_services": ["SpecProof MVP (v0.1.0) — built and e2e-tested locally, not yet published"],
+  "active_services": [
+    "SpecCaster MVP (v0.1.0) — e2e-tested; code on GitHub (gonreyna85code/speccaster) with Pages landing live",
+    "GitHub repo + Pages landing (gonreyna85code.github.io/speccaster) — live, awaiting npm publish and EXP-001 launch post"
+  ],
   "incidents": [],
   "technical_health": "nominal",
   "financial_health": "unfunded",
   "next_actions": [
-    "owner provisions GitHub + npm publish credentials -> publish + launch EXP-001",
+    "owner provisions npm publish token / runs npm login -> npm publish speccaster + verify install -> kick EXP-001 launch (Show HN / r/node)",
     "owner provisions Lemon Squeezy account + API key + payout method -> enable fiat block",
     "post Show HN / r/node / build-in-public update",
     "track stars, installs, issues weekly",

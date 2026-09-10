@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpecProof — contract tests from your OpenAPI spec</title>
+<title>SpecCaster — contract tests from your OpenAPI spec</title>
 <meta name="description" content="Zero-config contract tests from your OpenAPI spec. One command writes an owned, extendable test suite into your repo; your CI rejects spec drift.">
 <style>
   :root { --ink:#111; --mut:#666; --accent:#2563eb; --bg:#fafafa; --line:#e5e7eb; }
@@ -35,45 +35,45 @@
 <div class="wrap">
   <header>
     <span class="badge">v0.1.0 · MVP</span>
-    <h1>SpecProof</h1>
+    <h1>SpecCaster</h1>
     <p class="sub">Contract tests from your OpenAPI spec — generated, owned, and drift-protected. Zero config. One command. Runs in your CI.</p>
   </header>
 
   <div class="cta">
     <a class="btn" href="#quickstart">Get started</a>
-    <a class="btn ghost" href="https://github.com/your-repo/specproof" rel="nofollow">GitHub</a>
+    <a class="btn ghost" href="https://github.com/gonreyna85code/speccaster" rel="nofollow">GitHub</a>
   </div>
 
   <h2>The problem it solves</h2>
   <p>Your API spec rotates. Your tests drift. Nobody notices until production does.
   Keeping hand-written documentation and assertion suites in sync is manual, boring
   work that everyone skips under pressure.</p>
-  <p>SpecProof makes the spec the contract: it generates a <code>node:test</code> suite
+  <p>SpecCaster makes the spec the contract: it generates a <code>node:test</code> suite
   into your repo, and your CI <strong>fails the build whenever the committed suite falls
   out of sync with the spec</strong>.</p>
 
   <div class="grid">
     <div class="card"><b>You own the tests</b>Plain committed <code>node:test</code> files. Extend them, don't fight a framework.</div>
-    <div class="card"><b>Drift = red build</b><code>specproof drift</code> blocks PRs when spec and suite disagree.</div>
-    <div class="card"><b>Zero config</b><code>npx specproof init</code>. No server, no credentials, no SaaS dashboard.</div>
+    <div class="card"><b>Drift = red build</b><code>speccaster drift</code> blocks PRs when spec and suite disagree.</div>
+    <div class="card"><b>Zero config</b><code>npx speccaster init</code>. No server, no credentials, no SaaS dashboard.</div>
   </div>
 
   <h2 id="quickstart">Quickstart</h2>
-  <pre>npx specproof init --spec openapi.yaml
-# writes specproof/contract.test.js + .github/workflows/specproof.yml
+  <pre>npx speccaster init --spec openapi.yaml
+# writes speccaster/contract.test.js + .github/workflows/speccaster.yml
 
-SPECPROOF_BASE_URL=http://localhost:8080/v1 \
-  node --test specproof/contract.test.js</pre>
+SPECCASTER_BASE_URL=http://localhost:8080/v1 \
+  node --test speccaster/contract.test.js</pre>
   <p class="muted">Works with OpenAPI 3.0/3.1 (JSON or YAML). Node 18+.</p>
 
   <h2>In CI</h2>
   <pre># auto-generated workflow
 - name: Regenerate + drift gate
-  run: npx -y specproof@latest drift --spec openapi.yaml --out specproof/contract.test.js
+  run: npx -y speccaster@latest drift --spec openapi.yaml --out speccaster/contract.test.js
 - name: Run contract tests
   env:
-    SPECPROOF_BASE_URL: ${{ secrets.SPECPROOF_BASE_URL }}
-  run: node --test specproof/contract.test.js</pre>
+    SPECCASTER_BASE_URL: ${{ secrets.SPECCASTER_BASE_URL }}
+  run: node --test speccaster/contract.test.js</pre>
 
   <h2>Status &amp; pricing</h2>
   <ul>

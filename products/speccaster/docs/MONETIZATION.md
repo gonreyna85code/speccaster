@@ -1,4 +1,4 @@
-# SpecProof — monetization plan
+# SpecCaster — monetization plan
 
 Status: free MIT MVP; **no revenue yet, none claimed**. The experiment is
 `EXP-001`: adoption first, monetization after a measurable user base.
@@ -15,11 +15,11 @@ Status: free MIT MVP; **no revenue yet, none claimed**. The experiment is
 ## Mechanics (Lemon Squeezy, user-owned store)
 - Merchant of Record: sales tax/VAT handled; payouts to owner's bank/PayPal.
 - `ls: 5% + $0.50` avoids low price points (< $10) that the flat fee eats.
-- License delivery: LS license-key product; CLI reads a `specproof.lic` file.
+- License delivery: LS license-key product; CLI reads a `speccaster.lic` file.
 
 ## Required owner steps (to go live)
 1. Create Lemon Squeezy account (`your-store.lemonsqueezy.com`).
-2. Create product "SpecProof Pro — one repo license", price $19 once.
+2. Create product "SpecCaster Pro — one repo license", price $19 once.
 3. Generate an **API key** (settings > API) → provide as `LEMON_SQUEEZY_API_KEY`.
 4. Connect payout method (bank / PayPal) inside LS — that is the withdrawal
    destination and legal identity (KYC) step the operator cannot do.

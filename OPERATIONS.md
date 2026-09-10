@@ -9,13 +9,14 @@
 | Component | Provider | Status |
 |-----------|----------|--------|
 | Payments (MoR) | Lemon Squeezy | NOT CONFIGURED — owner account + API key + payout method |
-| Package registry | npm | NOT CONFIGURED — needs owner token |
-| Repo / issues | GitHub | NOT CONFIGURED — needs owner account |
-| Landing host | GitHub Pages / Cloudflare Pages | NOT CONFIGURED — follows GitHub |
-| Analytics | none (landing is tracker-free) | OK for MVP |
+| Package registry | npm | PENDING — needs owner token/login (`speccaster` name free) |
+| Repo / issues | GitHub | LIVE — gonreyna85code/speccaster (public) |
+| Landing host | GitHub Pages (+Actions) | LIVE — gonreyna85code.github.io/speccaster |
+| Analytics | none (landing is tracker-free) | OK for MVP; npm downloads + stars via public APIs |
 
 ## Active services
-- SpecProof MVP (local, e2e-tested). No live/external service until published.
+- SpecCaster: GitHub repo + Pages landing live. npm publish pending owner token.
+- No paid tier live; no revenue yet. Nothing live depends on the owner beyond npm.
 
 ## Failure recovery
 Detect → classify → contain → recover → log → prevent. Exponential backoff for

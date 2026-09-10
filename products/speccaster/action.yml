@@ -1,9 +1,9 @@
-name: 'SpecProof — OpenAPI contract gate'
+name: 'SpecCaster — OpenAPI contract gate'
 description: >-
   Regenerate contract tests from your OpenAPI spec and fail CI when the committed
   test suite has drifted out of sync with the spec. Optionally runs the tests
   against your live API.
-author: 'SpecProof'
+author: 'SpecCaster'
 inputs:
   spec:
     description: 'Path to the OpenAPI spec (JSON or YAML).'
@@ -12,7 +12,7 @@ inputs:
   out:
     description: 'Path to the generated contract test file.'
     required: false
-    default: 'specproof/contract.test.js'
+    default: 'speccaster/contract.test.js'
   base-url:
     description: >-
       Override the API base URL from the spec (scheme://host[:port][/mount-path]).
@@ -35,7 +35,7 @@ runs:
       run: |
         ARGS=(--spec "$SPEC" --out "$OUT")
         if [ -n "$BASE" ]; then ARGS+=(--base-url "$BASE"); fi
-        npx -y specproof@latest drift "${ARGS[@]}"
+        npx -y speccaster@latest drift "${ARGS[@]}"
     - name: Run contract tests
       shell: bash
       env:
@@ -43,5 +43,5 @@ runs:
         BASE: ${{ inputs.base-url }}
       run: |
         if [ "${{ inputs.run-tests }}" = "true" ]; then
-          if [ -n "$BASE" ]; then SPECPROOF_BASE_URL="$BASE" node --test "$OUT"; else node --test "$OUT"; fi
+          if [ -n "$BASE" ]; then SPECCASTER_BASE_URL="$BASE" node --test "$OUT"; else node --test "$OUT"; fi
         fi

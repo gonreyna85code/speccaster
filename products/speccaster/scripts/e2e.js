@@ -4,9 +4,9 @@ const os = require('os');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const BIN = path.join(ROOT, 'bin', 'specproof.js');
+const BIN = path.join(ROOT, 'bin', 'speccaster.js');
 const SPEC = path.join(ROOT, 'test', 'fixtures', 'petstore.yaml');
-const OUT = path.join(os.tmpdir(), 'specproof-e2e-' + process.pid + '-contract.test.js');
+const OUT = path.join(os.tmpdir(), 'speccaster-e2e-' + process.pid + '-contract.test.js');
 const PORT = 39000 + Math.floor(Math.random() * 900);
 const BASE_URL = 'http://localhost:' + PORT + '/v1';
 
@@ -59,7 +59,7 @@ setTimeout(() => {
       '      operationId: listPets',
       '      tags:\n          - core\n      operationId: listPets'
     );
-    const tmpSpec = path.join(os.tmpdir(), 'specproof-drift-' + process.pid + '.yaml');
+    const tmpSpec = path.join(os.tmpdir(), 'speccaster-drift-' + process.pid + '.yaml');
     fs.writeFileSync(tmpSpec, shifted);
     const r = cli(['drift', '--spec', tmpSpec, '--out', OUT, '--base-url', 'http://localhost:' + PORT + '/v1'], {});
     if (r.status === 0) throw new Error('drift not detected');

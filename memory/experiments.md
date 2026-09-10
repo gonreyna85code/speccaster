@@ -1,13 +1,13 @@
 # EXPERIMENTS
 
-## EXP-001 — SpecProof launch — 2026-09-10
+## EXP-001 — SpecCaster launch — 2026-09-10
 ```yaml
 experiment:
   hypothesis: Developers will adopt a zero-config OpenAPI→contract-test generator
     that owns a committed, extendable test file and fails CI on spec/test drift.
-  action: Build SpecProof MVP (CLI + GitHub Action), publish package, launch on
+  action: Build MVP (CLI + GitHub Action), publish package, launch on
     HN/Reddit via Show HN + build-in-public, land landing page.
-  expected_result: 50+ GitHub stars, 10+ unique users running `npx specproof init`.
+  expected_result: 50+ GitHub stars, 10+ unique users running `npx speccaster init`.
   budget: 0
   maximum_loss: 0
   success_metric: >=10 unique installs AND >=20 stars within 45 days; any paid
@@ -15,12 +15,14 @@ experiment:
   failure_metric: <10 unique installs and <20 stars by deadline.
   start_date: 2026-09-10
   deadline: 2026-10-25
-  result: MVPs core done + e2e 5/5 green (2026-09-10). PUBLIC LAUNCH NOT YET DONE —
-    blocked on owner credentials: npm publish token, GitHub account, (later) Lemon
-    Squeezy API key + payout method. Costs spent: $0.00.
+  result: MVP core done + e2e 5/5 green (2026-09-10). Rebranded SpecProof→SpecCaster
+    (npm name taken, D-004). GitHub repo gonreyna85code/speccaster live + Pages landing
+    deployed (2026-09-10). npm publish PENDING owner token/login. Market signal:
+    specproof@0.9.4 (audit dashboard, 19 deps incl. Next.js) published ~2026-09-04 —
+    validates the wedge. Costs spent: $0.00.
   decision: pending   # SCALE | ITERATE | PAUSE | KILL
 ```
-Launch is BLOCKED on: owner GitHub account + npm publish token (credentials).
+Launch block: npm publish token (owner). GitHub no longer blocks.
 
 ## EXP-000 — ERD generator (killed before launch)
 - hypothesis: Auto-updating DB schema ERD in CI is an open dev-tool gap.

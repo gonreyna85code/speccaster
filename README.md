@@ -7,14 +7,16 @@ operated autonomously. Revenue/payout claims appear here only when confirmed by 
 payment provider or wallet.
 
 ## Status
-- Current business: **SpecProof** — zero-config OpenAPI → contract-test generator CLI
-  + GitHub Action (`products/specproof/`). MVP v0.1.0 built, e2e 5/5 green.
+- Current business: **SpecCaster** — zero-config OpenAPI → contract-test generator CLI
+  + GitHub Action (`products/speccaster/`). MVP v0.1.0 built, e2e 5/5 green.
+- GitHub: repo `gonreyna85code/speccaster` live (public) + Pages landing
+  https://gonreyna85code.github.io/speccaster/
 - Infrastructure: local workspace (Node 24, Python 3.13, Git, Docker available)
 - Capital: NOT CONFIGURED (pending owner)
 - Payment processing: NOT CONFIGURED (pending owner Lemon Squeezy account + API key + payout method)
-- Deployment/registry: NOT CONFIGURED (pending owner GitHub + npm credentials)
+- Package registry: `speccaster` name RESERVED-available; publish pending owner npm token/login
 - Live revenue: **$0.00** — nothing claimed until confirmed
-- Launch: BLOCKED on owner credentials (see Owner checklist) — product work is complete
+- Launch: npm publish blocked on owner npm token (GitHub ORB unblocked)
 
 ## Files
 - `BUSINESS.md` — current business, strategy, plan
@@ -28,11 +30,10 @@ payment provider or wallet.
 
 ## Owner checklist (blocking items, in order)
 1. Confirm `config/business.yaml` capital parameters (still zero → no autonomous spend).
-2. npm publish token — lets the operator publish SpecProof (`npm publish`).
-3. GitHub account/repo — stars/issues, GitHub Pages for `site/index.html`, action listing.
-4. Payment account (Lemon Squeezy) — product "SpecProof Pro", API key, and your payout
+2. **npm publish token or `npm login`** — the only remaining launch blocker; lets the
+   operator run `npm publish` → `npx speccaster init`. Everything else is unblocked.
+3. Payment account (Lemon Squeezy) — product "Speccaster Pro", API key, and your payout
    method (bank/PayPal) = legal identity/KYC the operator cannot perform.
-5. Withdrawal destination allowlist (via LS payout tool; profit stays until threshold).
+4. Withdrawal destination allowlist (via LS payout tool; profit stays until threshold).
 
-Items 2–3 unlock EXP-001's launch. Until they exist, no revenue is possible;
-each is a credential the owner must provision.
+Item 2 unlocks EXP-001's launch.

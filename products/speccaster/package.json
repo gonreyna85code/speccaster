@@ -1,11 +1,23 @@
 {
-  "name": "specproof",
+  "name": "speccaster",
   "version": "0.1.0",
   "description": "Zero-config contract tests from your OpenAPI spec. One command writes an owned, extendable test suite into your repo; your CI rejects spec drift.",
   "license": "MIT",
-  "bin": { "specproof": "bin/specproof.js" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonreyna85code/speccaster.git"
+  },
+  "homepage": "https://gonreyna85code.github.io/speccaster/",
+  "bugs": {
+    "url": "https://github.com/gonreyna85code/speccaster/issues"
+  },
+  "bin": {
+    "speccaster": "bin/speccaster.js"
+  },
   "main": "src/generate.js",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "test": "node scripts/e2e.js"
   },

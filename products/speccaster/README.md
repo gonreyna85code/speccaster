@@ -1,4 +1,4 @@
-# SpecProof
+# SpecCaster
 
 Zero-config contract tests from your OpenAPI spec.
 
@@ -12,12 +12,12 @@ Status: **MVP (v0.1.0)**. Cross-platform, works offline, zero recurring cost.
 
 OpenAPI specs rot. Contract tests drift. Both get fixed fastest when the CI
 tells you — on every PR — that the spec you shipped no longer matches either
-the code or the tests. SpecProof makes the generated tests the single source
+the code or the tests. SpecCaster makes the generated tests the single source
 they must agree on.
 
 - **You own the tests.** They're plain `node:test` files committed to your repo
   — extend them, don't fight a framework.
-- **Drift = red build.** `specproof drift` fails when the committed suite is
+- **Drift = red build.** `speccaster drift` fails when the committed suite is
   out of date with the spec.
 - **Zero config.** Point it at your spec. Nothing to install permanently
   (`npx`), no server, no credentials, no SaaS dashboard.
@@ -25,29 +25,29 @@ they must agree on.
 ## Quickstart
 
 ```bash
-npx specproof init --spec openapi.yaml
-# writes specproof/contract.test.js + .github/workflows/specproof.yml
+npx speccaster init --spec openapi.yaml
+# writes speccaster/contract.test.js + .github/workflows/speccaster.yml
 
 # point the tests at your running API and execute
-SPECPROOF_BASE_URL=http://localhost:8080/v1 node --test specproof/contract.test.js
+SPECCASTER_BASE_URL=http://localhost:8080/v1 node --test speccaster/contract.test.js
 ```
 
 Your sub-git workflow then blocks anything that drifts:
 
 ```yaml
-# .github/workflows/specproof.yml (auto-generated)
+# .github/workflows/speccaster.yml (auto-generated)
 - name: Regenerate + drift gate
-  run: npx specproof@latest drift --spec openapi.yaml --out specproof/contract.test.js
+  run: npx speccaster@latest drift --spec openapi.yaml --out speccaster/contract.test.js
 - name: Run contract tests
   env:
-    SPECPROOF_BASE_URL: ${{ secrets.SPECPROOF_BASE_URL }}
-  run: node --test specproof/contract.test.js
+    SPECCASTER_BASE_URL: ${{ secrets.SPECCASTER_BASE_URL }}
+  run: node --test speccaster/contract.test.js
 ```
 
 Or as a reusable action:
 
 ```yaml
-- uses: your-org/specproof@v1
+- uses: your-org/speccaster@v1
   with:
     spec: openapi.yaml
     base-url: http://localhost:8080/v1
@@ -57,12 +57,12 @@ Or as a reusable action:
 
 | Command | Effect |
 |---|---|
-| `specproof init` | Generate the suite + workflow. Fails if the file exists unless `--force`. |
-| `specproof test` | Generate to a temp file and run it (`node --test`). |
-| `specproof drift` | Exit non-zero when the committed suite is out of sync with the spec. For CI. |
+| `speccaster init` | Generate the suite + workflow. Fails if the file exists unless `--force`. |
+| `speccaster test` | Generate to a temp file and run it (`node --test`). |
+| `speccaster drift` | Exit non-zero when the committed suite is out of sync with the spec. For CI. |
 
 Options: `--spec <file>`, `--out <file>`, `--base-url <url>`, `--force`.
-Env override: `SPECPROOF_BASE_URL` (replaces the whole base URL, including any
+Env override: `SPECCASTER_BASE_URL` (replaces the whole base URL, including any
 mount path, e.g. `https://api.example.com/v1`).
 
 ## What it generates
