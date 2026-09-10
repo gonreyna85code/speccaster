@@ -17,12 +17,11 @@ experiment:
   deadline: 2026-10-25
   result: MVP core done + e2e 5/5 green (2026-09-10). Rebranded SpecProof→SpecCaster
     (npm name taken, D-004). GitHub repo gonreyna85code/speccaster live + Pages landing
-    deployed and verified HTTP 200 (2026-09-10). Publish blocked: npm account has 2FA;
-    classic token cannot publish (E403) -> needs OTP or granular token with 2FA bypass.
-    Activation measured via public signals (no runtime telemetry; npm downloads + stars
-    collector in scripts/check-metrics.js). Market signal: specproof@0.9.4 (audit
-    dashboard, 19 deps incl. Next.js) published ~2026-09-04 — validates the wedge.
-    Costs spent: $0.00.
+    verified HTTP 200. PUBLISHED 2026-09-10T23:28:50Z speccaster@0.1.0 (shasum
+    bc0f9f3086426e2887bd080f62f550ee48bbc097) after clean-registry install+init+drift+test
+    verification (3/3 green vs live API). Distribution executing. Activation measured via
+    public signals (script check-metrics). Market signal: specproof@0.9.4 audit dashboard
+    ~2026-09-04 validates wedge. Costs spent: $0.00.
   decision: pending   # SCALE | ITERATE | PAUSE | KILL
 ```
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T23:12:00Z",
+  "updated_at": "2026-09-10T23:30:00Z",
   "status": "experimentation",
   "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
   "current_strategy": "validate EXP-001 (adoption) before monetizing; ship free MVP publicly, hold pricing until user data exists",
@@ -29,23 +29,24 @@
   "conversion_rate": null,
   "experiments": ["EXP-001"],
   "active_services": [
+    "SpecCaster npm package — PUBLISHED speccaster@0.1.0 (https://www.npmjs.com/package/speccaster, 2026-09-10T23:28:50Z); install+init+drift+test verified against registry build",
     "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live",
-    "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200",
-    "npm package: NOT PUBLISHED — npm account 2FA blocks classic token (E403); needs OTP or granular token"
+    "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200"
   ],
   "metrics_baseline": {
     "npm_downloads": 0,
     "github_stars": 0,
     "github_open_issues": 0,
     "landing_status": 200,
-    "recorded_at": "2026-09-10"
+    "recorded_at": "2026-09-10",
+    "note": "baseline pre-publish; npm installs from owner machine count toward downloads after publish"
   },
   "incidents": [],
   "technical_health": "nominal",
   "financial_health": "unfunded",
   "next_actions": [
-    "owner provides npm OTP or granular publish token (2FA bypass) -> npm publish speccaster 0.1.0 -> verify install -> EXECUTE distribution (Show HN / r/node)",
-    "after publish: run check-metrics daily, record metrics.jsonl, drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
+    "EXECUTE distribution now package is live: Show HN + r/node posts (need owner HN/Reddit accounts or owner posts), awesome-openapi3 PR, directory submissions",
+    "run check-metrics daily (memory/metrics.jsonl); drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
     "owner provisions Lemon Squeezy account + API key + payout method -> enable fiat block",
     "post Show HN / r/node / build-in-public update",
     "track stars, installs, issues weekly",
