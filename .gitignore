@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.env
+.env.*
+secrets/
+config/business.local.yaml
+*.log
+.DS_Store
+Thumbs.db

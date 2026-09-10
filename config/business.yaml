@@ -1,0 +1,25 @@
+# BUSINESS CONFIGURATION — owner fills in real values.
+# Until confirmed, defaults are conservative and NO autonomous spend is permitted.
+
+initial_capital: 0                    # USD
+maximum_autonomous_spend_per_transaction: 0
+maximum_autonomous_monthly_spend: 0
+minimum_operating_reserve: 0
+profit_withdrawal_threshold: 100.00   # withdraw when available profit >= this
+maximum_loss_per_experiment: 0
+
+crypto:
+  enabled: false
+  network: ""
+  asset: ""
+  destination_wallet: ""              # allowlisted; never modify without owner
+  minimum_withdrawal: 0
+  maximum_withdrawal: 0
+
+fiat:
+  provider: ""                        # lemon-squeezy | stripe | ...
+  destination_account: ""             # payout method on provider (owner-owned)
+  enabled: false
+
+notifications:
+  report_interval_days: 7
