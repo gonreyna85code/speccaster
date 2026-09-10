@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpecProof — contract tests from your OpenAPI spec</title>
+<meta name="description" content="Zero-config contract tests from your OpenAPI spec. One command writes an owned, extendable test suite into your repo; your CI rejects spec drift.">
+<style>
+  :root { --ink:#111; --mut:#666; --accent:#2563eb; --bg:#fafafa; --line:#e5e7eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+  .wrap { max-width:760px; margin:0 auto; padding:48px 24px 96px; }
+  header { border-bottom:1px solid var(--line); }
+  h1 { font-size:2.4rem; margin:.4em 0 .2em; letter-spacing:-.02em; }
+  h2 { margin-top:2.2em; font-size:1.3rem; }
+  .sub { color:var(--mut); font-size:1.1rem; margin:0 0 1.4em; }
+  .badge { display:inline-block; font-size:.75rem; border:1px solid var(--line); border-radius:999px; padding:2px 10px; color:var(--mut); background:#fff; }
+  pre { background:#0f172a; color:#e2e8f0; padding:16px 18px; border-radius:10px; overflow-x:auto; font-size:.86rem; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  p code, li code { background:#eef2ff; color:#3730a3; padding:1px 6px; border-radius:5px; font-size:.9em; }
+  .cta { margin-top:28px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; font-weight:600; padding:10px 20px; border-radius:8px; text-decoration:none; }
+  .btn.ghost { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  a { color:var(--accent); }
+  .muted { color:var(--mut); }
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:20px; color:var(--mut); font-size:.9rem; }
+  ul { padding-left:1.3em; }
+  li { margin:.35em 0; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin:18px 0; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  .card b { display:block; margin-bottom:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge">v0.1.0 · MVP</span>
+    <h1>SpecProof</h1>
+    <p class="sub">Contract tests from your OpenAPI spec — generated, owned, and drift-protected. Zero config. One command. Runs in your CI.</p>
+  </header>
+
+  <div class="cta">
+    <a class="btn" href="#quickstart">Get started</a>
+    <a class="btn ghost" href="https://github.com/your-repo/specproof" rel="nofollow">GitHub</a>
+  </div>
+
+  <h2>The problem it solves</h2>
+  <p>Your API spec rotates. Your tests drift. Nobody notices until production does.
+  Keeping hand-written documentation and assertion suites in sync is manual, boring
+  work that everyone skips under pressure.</p>
+  <p>SpecProof makes the spec the contract: it generates a <code>node:test</code> suite
+  into your repo, and your CI <strong>fails the build whenever the committed suite falls
+  out of sync with the spec</strong>.</p>
+
+  <div class="grid">
+    <div class="card"><b>You own the tests</b>Plain committed <code>node:test</code> files. Extend them, don't fight a framework.</div>
+    <div class="card"><b>Drift = red build</b><code>specproof drift</code> blocks PRs when spec and suite disagree.</div>
+    <div class="card"><b>Zero config</b><code>npx specproof init</code>. No server, no credentials, no SaaS dashboard.</div>
+  </div>
+
+  <h2 id="quickstart">Quickstart</h2>
+  <pre>npx specproof init --spec openapi.yaml
+# writes specproof/contract.test.js + .github/workflows/specproof.yml
+
+SPECPROOF_BASE_URL=http://localhost:8080/v1 \
+  node --test specproof/contract.test.js</pre>
+  <p class="muted">Works with OpenAPI 3.0/3.1 (JSON or YAML). Node 18+.</p>
+
+  <h2>In CI</h2>
+  <pre># auto-generated workflow
+- name: Regenerate + drift gate
+  run: npx -y specproof@latest drift --spec openapi.yaml --out specproof/contract.test.js
+- name: Run contract tests
+  env:
+    SPECPROOF_BASE_URL: ${{ secrets.SPECPROOF_BASE_URL }}
+  run: node --test specproof/contract.test.js</pre>
+
+  <h2>Status &amp; pricing</h2>
+  <ul>
+    <li><strong>Free</strong> — open source (MIT), personal and open-source use.</li>
+    <li><strong>Pro</strong> — private repos, teams, priority support: planned once the free tier has real users.</li>
+  </ul>
+  <p class="muted">This is an early MVP. Stars, installs and revenue are tracked publicly as they happen — nothing is asserted before it is real.</p>
+
+  <footer>Built and operated autonomously. File issues on GitHub. No cookies, no analytics trackers.</footer>
+</div>
+</body>
+</html>

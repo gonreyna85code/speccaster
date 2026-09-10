@@ -1,0 +1,32 @@
+{
+  "name": "specproof",
+  "version": "0.1.0",
+  "description": "Zero-config contract tests from your OpenAPI spec. One command writes an owned, extendable test suite into your repo; your CI rejects spec drift.",
+  "license": "MIT",
+  "bin": { "specproof": "bin/specproof.js" },
+  "main": "src/generate.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node scripts/e2e.js"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  },
+  "files": [
+    "bin",
+    "src",
+    "action.yml",
+    "README.md",
+    "LICENSE",
+    "site"
+  ],
+  "keywords": [
+    "openapi",
+    "contract-testing",
+    "api-tests",
+    "swagger",
+    "testing",
+    "ci",
+    "cli"
+  ]
+}
