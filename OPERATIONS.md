@@ -5,6 +5,18 @@
 6. experiments; 7. market signals; 8. identify highest-value action;
 9. execute; 10. measure; 11. update memory; 12. repeat.
 
+Measure each run with the public-signals collector (no runtime telemetry —
+see `docs/MEASUREMENT.md`):
+
+```bash
+node scripts/check-metrics.js   # appends to memory/metrics.jsonl
+```
+
+## Feedback channels (lightweight, no infra)
+- GitHub Issues (bug, feature, confusion templates in `ISSUE_TEMPLATE` when live)
+- `speccaster --feedback` → prints the repo issues URL (future, post-publish)
+- Changelog/README encourage issues over email (no mailbox to run)
+
 ## Tools / accounts
 | Component | Provider | Status |
 |-----------|----------|--------|

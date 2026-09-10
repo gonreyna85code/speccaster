@@ -74,3 +74,27 @@ lesson:
 - actual_result: Repo created (API 201), code pushed, Pages enabled (build_type workflow)
   via API; landing verified live at https://gonreyna85code.github.io/speccaster/ (HTTP 200).
 - lesson: Re-check auth + name availability at publish time; GCM `github login` takes no host argument.
+
+## D-006 — 2026-09-10
+- decision: No runtime telemetry in SpecCaster v0.1.0; measure activation via public
+  signals (npm downloads, GitHub stars/issues, landing, direct feedback).
+- reason: The CLI's zero-network property is a security/privacy selling point and there
+  is no ingest host; running one would cost and add GDPR/legal surface with no current
+  benefit. §9 allows telemetry only when technically justified.
+- evidence: Public endpoints exist for installs (api.npmjs.org) and stars/issues (GitHub API).
+- expected_result: Honest activation proxies without client tracking.
+- actual_result: scripts/check-metrics.js + docs/MEASUREMENT.md in place; baseline logged
+  (downloads 0, stars 0, landing 200, published=false).
+- lesson: A self-identifier in generated files (e.g. header comment) gives traceability
+  cost-free — matched later against filed issues, still without network calls.
+
+## D-007 — 2026-09-10
+- decision: Soak-test + publish `speccaster@0.1.0` only after clean-install validation from
+  a scratch dir; treat npm 2FA/E403 as a publish blocker, not a version-bump excuse.
+- reason: Release discipline §3; the account enforces 2FA — classic tokens can't publish.
+- evidence: `npm whoami`→gonreyna85code; `npm publish`→E403 (2FA required); clean-install
+  smoke (init/test/drift) all green locally.
+- expected_result: One correct publish attempt once a 2FA-capable credential exists.
+- actual_result: Pending — waiting on owner OTP or granular publish token (blocker recorded in state).
+- lesson: Publishing blocks on account policy, not code; do not chain release-mechanic changes
+  into the fix.

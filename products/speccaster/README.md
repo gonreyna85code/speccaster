@@ -1,10 +1,16 @@
 # SpecCaster
 
-Zero-config contract tests from your OpenAPI spec.
+Contract tests from your OpenAPI spec — **generated, owned, drift-protected, run in CI**.
 
-One command writes an owned, extendable test suite into your repo. Your CI
-regenerates it, rejects spec/test drift, and runs it against your live API —
-so the tests and the spec can never silently fall out of sync.
+One command writes a plain `node:test` suite into your repo. Your CI regenerates it,
+rejects spec↔test drift, and runs it against your live API. When spec and tests fall
+out of sync, the build goes red — before production does.
+
+<p>
+  <img alt="npm" src="https://img.shields.io/npm/v/speccaster">
+  <img alt="npm downloads" src="https://img.shields.io/npm/dm/speccaster">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/gonreyna85code/speccaster">
+</p>
 
 Status: **MVP (v0.1.0)**. Cross-platform, works offline, zero recurring cost.
 
@@ -32,7 +38,7 @@ npx speccaster init --spec openapi.yaml
 SPECCASTER_BASE_URL=http://localhost:8080/v1 node --test speccaster/contract.test.js
 ```
 
-Your sub-git workflow then blocks anything that drifts:
+Your CI workflow then blocks anything that drifts:
 
 ```yaml
 # .github/workflows/speccaster.yml (auto-generated)
@@ -47,11 +53,17 @@ Your sub-git workflow then blocks anything that drifts:
 Or as a reusable action:
 
 ```yaml
-- uses: your-org/speccaster@v1
+- uses: gonreyna85code/speccaster/products/speccaster@v1
   with:
     spec: openapi.yaml
     base-url: http://localhost:8080/v1
 ```
+
+## Examples
+
+Worked, runnable sample in
+[`examples/petstore-ci`](https://github.com/gonreyna85code/speccaster/tree/main/products/speccaster/examples/petstore-ci):
+a complete API + spec + committed generated suite + CI workflow.
 
 ## Commands
 
@@ -79,7 +91,8 @@ Add your own deeper assertions in the same file — they're your tests.
 
 ## Pricing
 
-- **Free** for open-source and personal use (MIT license).
+- **Free** for open-source and personal use (MIT license). Not crippled —
+  the free tool is the product.
 - **Pro** (private repos, teams, priority support): planned once the free
   tier has real users. No revenue is claimed before any is confirmed.
 
