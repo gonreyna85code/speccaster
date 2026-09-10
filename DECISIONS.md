@@ -71,5 +71,6 @@ lesson:
 - evidence: `git credential-manager` stored bearer authenticated successfully; probe
   `GET /user` → login `gonreyna85code`, scopes gist, repo, workflow; name `speccaster` free.
 - expected_result: Live repo + `https://gonreyna85code.github.io/speccaster/` landing.
-- actual_result: Repo created (API 201), code pushed, Pages workflow added (pending first deploy).
+- actual_result: Repo created (API 201), code pushed, Pages enabled (build_type workflow)
+  via API; landing verified live at https://gonreyna85code.github.io/speccaster/ (HTTP 200).
 - lesson: Re-check auth + name availability at publish time; GCM `github login` takes no host argument.

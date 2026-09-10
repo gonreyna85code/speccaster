@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T00:00:00Z",
+  "updated_at": "2026-09-10T12:00:00Z",
   "status": "experimentation",
   "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
   "current_strategy": "validate EXP-001 (adoption) before monetizing; ship free MVP publicly, hold pricing until user data exists",
@@ -29,8 +29,9 @@
   "conversion_rate": null,
   "experiments": ["EXP-001"],
   "active_services": [
-    "SpecCaster MVP (v0.1.0) — e2e-tested; code on GitHub (gonreyna85code/speccaster) with Pages landing live",
-    "GitHub repo + Pages landing (gonreyna85code.github.io/speccaster) — live, awaiting npm publish and EXP-001 launch post"
+    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live",
+    "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200",
+    "npm package: NOT PUBLISHED (awaits owner npm token/login)"
   ],
   "incidents": [],
   "technical_health": "nominal",

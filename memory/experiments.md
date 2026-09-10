@@ -17,9 +17,9 @@ experiment:
   deadline: 2026-10-25
   result: MVP core done + e2e 5/5 green (2026-09-10). Rebranded SpecProof→SpecCaster
     (npm name taken, D-004). GitHub repo gonreyna85code/speccaster live + Pages landing
-    deployed (2026-09-10). npm publish PENDING owner token/login. Market signal:
-    specproof@0.9.4 (audit dashboard, 19 deps incl. Next.js) published ~2026-09-04 —
-    validates the wedge. Costs spent: $0.00.
+    deployed and verified HTTP 200 (2026-09-10). npm publish still PENDING owner token/login.
+    Market signal: specproof@0.9.4 (audit dashboard, 19 deps incl. Next.js) published
+    ~2026-09-04 — validates the wedge. Costs spent: $0.00.
   decision: pending   # SCALE | ITERATE | PAUSE | KILL
 ```
 Launch block: npm publish token (owner). GitHub no longer blocks.
