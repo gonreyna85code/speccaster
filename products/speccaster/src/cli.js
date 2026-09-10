@@ -3,6 +3,7 @@ const path = require('path');
 const os = require('os');
 const { spawnSync } = require('child_process');
 const { generate, writeGenerated } = require('./generate');
+const { runDemo } = require('./demo');
 
 const WORKFLOW_TEMPLATE = `name: speccaster
 on:
@@ -54,11 +55,13 @@ Usage:
   speccaster init   [--spec <file>] [--out <file>] [--base-url <url>] [--force]
   speccaster test    [--spec <file>] [--out <file>] [--base-url <url>]
   speccaster drift   [--spec <file>] [--out <file>] [--base-url <url>]
+  speccaster demo
 
   init   Write the contract test suite (default out: speccaster/contract.test.js)
          and emit .github/workflows/speccaster.yml. Fails if out exists unless --force.
   test   Generate to a temp file and run it (node --test).
   drift  Exit non-zero if out is out of date with the spec. For CI.
+  demo   See it work in seconds: ephemeral API + generated suite + drift, no files kept.
 
 Env: SPECCASTER_BASE_URL overrides the server url from the spec.
 `;
@@ -96,6 +99,10 @@ async function main(argv) {
     writeGenerated({ content: gen.content, out: tmp });
     console.log('[speccaster] running', gen.content.split('\n').filter((l) => l.trim()).length, 'lines of tests');
     return runNodeTest(tmp);
+  }
+
+  if (cmd === 'demo') {
+    return runDemo();
   }
 
   if (cmd === 'drift') {

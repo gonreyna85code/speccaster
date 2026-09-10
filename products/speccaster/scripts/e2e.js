@@ -65,6 +65,18 @@ setTimeout(() => {
     if (r.status === 0) throw new Error('drift not detected');
   });
 
+  step('demo command passes (ephemeral API + generated suite + drift demo)', () => {
+    const r = cli(['demo'], {});
+    if (r.status !== 0) throw new Error('demo failed\n' + r.stdout + r.stderr);
+    if (!/pass 3/.test(r.stdout)) throw new Error('demo did not run 3 passing tests\n' + r.stdout);
+    if (!/drift gate/i.test(r.stdout)) throw new Error('demo drift explanation missing\n' + r.stdout);
+  });
+
+  step('--version prints a semver', () => {
+    const r = cli(['--version'], {});
+    if (r.status !== 0 || !/^\d+\.\d+\.\d+/.test(r.stdout.trim())) throw new Error('bad --version output: ' + r.stdout);
+  });
+
   serverChild.kill();
   try {
     fs.unlinkSync(OUT);

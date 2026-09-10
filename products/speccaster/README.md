@@ -12,7 +12,17 @@ out of sync, the build goes red — before production does.
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/gonreyna85code/speccaster">
 </p>
 
-Status: **MVP (v0.1.0)**. Cross-platform, works offline, zero recurring cost.
+Status: **MVP (v0.2.0)**. Cross-platform, works offline, zero recurring cost.
+
+## Try it in seconds
+
+```bash
+npx speccaster demo
+```
+
+It spins up an ephemeral API, generates the contract suite, runs it green, then
+shows how a spec edit changes the suite (the CI drift gate). Nothing is written
+to your repo — pure proof of value, then you tackle your real spec.
 
 ## Why
 
@@ -31,7 +41,8 @@ they must agree on.
 ## Quickstart
 
 ```bash
-npx speccaster init --spec openapi.yaml
+npx speccaster demo                       # prove it works in seconds
+npx speccaster init --spec openapi.yaml   # then generate your own suite
 # writes speccaster/contract.test.js + .github/workflows/speccaster.yml
 
 # point the tests at your running API and execute
@@ -72,6 +83,7 @@ a complete API + spec + committed generated suite + CI workflow.
 | `speccaster init` | Generate the suite + workflow. Fails if the file exists unless `--force`. |
 | `speccaster test` | Generate to a temp file and run it (`node --test`). |
 | `speccaster drift` | Exit non-zero when the committed suite is out of sync with the spec. For CI. |
+| `speccaster demo` | Ephemeral API + generated suite + drift demo. No files kept. |
 
 Options: `--spec <file>`, `--out <file>`, `--base-url <url>`, `--force`.
 Env override: `SPECCASTER_BASE_URL` (replaces the whole base URL, including any

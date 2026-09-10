@@ -59,7 +59,10 @@
   </div>
 
   <h2 id="quickstart">Quickstart</h2>
-  <pre>npx speccaster init --spec openapi.yaml
+  <pre>npx speccaster demo                       # prove it in seconds
+# ephemeral API + generated suite + drift demo, nothing written
+
+npx speccaster init --spec openapi.yaml   # then your own suite
 # writes speccaster/contract.test.js + .github/workflows/speccaster.yml
 
 SPECCASTER_BASE_URL=http://localhost:8080/v1 \

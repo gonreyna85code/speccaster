@@ -3,6 +3,20 @@
 All notable changes to SpecCaster are recorded here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.0] - 2026-09-10
+
+### Added
+- `speccaster demo` — instant proof of value with zero setup: spins up an
+  ephemeral API from an embedded OpenAPI spec, generates the contract suite,
+  runs it green, then shows how a spec edit changes the suite (the CI drift
+  gate). No files left behind. Ideal first run for new users.
+
+## [0.1.1] - 2026-09-10
+
+### Added
+- `--version` / `-V` flag.
+- Traceable, versioned header in generated files.
+
 ## [0.1.0] - 2026-09-10
 
 ### Added
