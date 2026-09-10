@@ -1,0 +1,19 @@
+name: Feature request
+description: A concrete improvement you'd use
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem you hit
+      description: What SpecCaster can't do today that you need (keep it to one scenario)
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: Where you'd use it
+      description: Local CLI, GitHub Action, CI gate, generated-suite shape, license tier...
+    validations:
+      required: false

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: SpecCaster discussions
+    url: https://github.com/gonreyna85code/speccaster/discussions
+    about: Ask questions and show setups without opening an issue.

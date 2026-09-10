@@ -32,15 +32,19 @@ function getUrl(url) {
 
 (async () => {
   const row = { date: new Date().toISOString().slice(0, 10), ts: new Date().toISOString() };
+  let registryPublished = null;
+  try {
+    const reg = await getJson(`https://registry.npmjs.org/${PKG}`);
+    registryPublished = reg.status === 200 ? reg.body['dist-tags']?.latest || true : false;
+  } catch (e) { /* keep null */ }
   try {
     const wk = await getJson(`https://api.npmjs.org/downloads/point/last-week/${PKG}`);
-    if (wk.status === 404) { row.published = false; row.npm_downloads_last_week = 0; }
-    else row.npm_downloads_last_week = wk.body.downloads;
+    row.npm_downloads_last_week = wk.status === 404 ? 0 : wk.body.downloads;
+    row.published = registryPublished !== null ? registryPublished : wk.status !== 404;
   } catch (e) { row.npm_last_week_error = e.message; }
   try {
     const mo = await getJson(`https://api.npmjs.org/downloads/point/last-month/${PKG}`);
-    if (mo.status === 404) { row.published = false; row.npm_downloads_last_month = 0; }
-    else row.npm_downloads_last_month = mo.body.downloads;
+    row.npm_downloads_last_month = mo.status === 404 ? 0 : mo.body.downloads;
   } catch (e) { row.npm_last_month_error = e.message; }
   try {
     const st = await getJson(`https://api.github.com/repos/${REPO}`);

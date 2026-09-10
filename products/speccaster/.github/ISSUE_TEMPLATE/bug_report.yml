@@ -1,0 +1,33 @@
+name: Bug report
+description: Something is broken or failing unexpectedly
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: SpecCaster version
+      description: Output of `npx speccaster --version` (or the version in package.json)
+    validations:
+      required: true
+  - type: input
+    id: spec
+    attributes:
+      label: Spec shape
+      description: OpenAPI version + approx size/paths, and whether JSON or YAML
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Repro
+      description: The exact command you ran and the error/output (no secrets, please)
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true

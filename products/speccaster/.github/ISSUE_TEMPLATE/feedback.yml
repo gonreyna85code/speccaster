@@ -1,0 +1,22 @@
+name: Feedback
+description: Anything else — confusion, install struggles, pricing thoughts, competitor mentions
+title: "[feedback] "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Confusion / docs
+        - Install or activation failure
+        - Pricing
+        - Competitor comparison
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Your feedback
+    validations:
+      required: true
