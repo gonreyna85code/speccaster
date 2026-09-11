@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Serialization fixture
+  version: 1.0.0
+paths:
+  /search:
+    get:
+      operationId: search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 2
+        - name: pipe
+          in: query
+          required: true
+          style: pipeDelimited
+          schema:
+            type: array
+            items:
+              type: string
+            minItems: 2
+        - name: spaced
+          in: query
+          required: true
+          style: spaceDelimited
+          schema:
+            type: array
+            items:
+              type: string
+            minItems: 2
+        - name: filter
+          in: query
+          required: true
+          style: deepObject
+          schema:
+            type: object
+            required: [status, page]
+            properties:
+              status:
+                type: string
+              page:
+                type: integer
+        - name: X-Request-Id
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+  /colors/a-b/{name}:
+    get:
+      operationId: getColor
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            example: navy
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Address:
+      type: object
+      required: [street, city]
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        code:
+          type: string
+          minLength: 5
+    Zip:
+      type: string

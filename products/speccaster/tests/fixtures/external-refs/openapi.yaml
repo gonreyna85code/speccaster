@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: External refs
+  version: 1.0.0
+paths:
+  /addresses/{id}:
+    get:
+      operationId: getAddress
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/address.yaml#/components/schemas/Address'
+  /users:
+    get:
+      operationId: listUsers
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/user.yaml#/components/schemas/User'

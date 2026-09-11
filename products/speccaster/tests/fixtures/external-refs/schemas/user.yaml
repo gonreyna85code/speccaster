@@ -1,0 +1,14 @@
+components:
+  schemas:
+    User:
+      type: object
+      required: [id, avatar]
+      properties:
+        id:
+          type: integer
+        nickname:
+          type: string
+        avatar:
+          $ref: './address.yaml#/components/schemas/Zip'
+        home:
+          $ref: './address.yaml#/components/schemas/Address'

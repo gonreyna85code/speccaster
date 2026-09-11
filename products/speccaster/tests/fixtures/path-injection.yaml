@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: Path injection attempt
+  version: 1.0.0
+paths:
+  '/pets/${name}`;throw 1;//':
+    get:
+      operationId: evilPath
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ok]
+                properties:
+                  ok:
+                    type: boolean

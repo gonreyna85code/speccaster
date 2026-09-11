@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Request bodies fixture
+  version: 1.0.0
+paths:
+  /json-with-rw:
+    post:
+      operationId: createJsonWithRW
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, secret, serverId]
+              properties:
+                name:
+                  type: string
+                secret:
+                  type: string
+                  writeOnly: true
+                serverId:
+                  type: integer
+                  readOnly: true
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, name]
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                  secret:
+                    type: string
+                    writeOnly: true
+  /form:
+    post:
+      operationId: submitForm
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                age:
+                  type: integer
+      responses:
+        '200':
+          description: ok
+  /text:
+    post:
+      operationId: echoText
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: ok
+  /multipart:
+    post:
+      operationId: upload
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: ok
