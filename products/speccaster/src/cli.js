@@ -5,6 +5,8 @@ const { spawnSync } = require('child_process');
 const { generate, writeGenerated } = require('./generate');
 const { runDemo } = require('./demo');
 
+const VERSION = require('../package.json').version;
+
 const WORKFLOW_TEMPLATE = `name: speccaster
 on:
   pull_request:
@@ -21,7 +23,7 @@ jobs:
           node-version: 20
       # Optionally spin up your API here (docker-compose / npm start)
       - name: Regenerate + drift gate
-        run: npx -y speccaster@latest drift --spec openapi.yaml --out speccaster/contract.test.js
+        run: npx -y speccaster@${VERSION} drift --spec openapi.yaml --out speccaster/contract.test.js
       - name: Run contract tests
         env:
           SPECCASTER_BASE_URL: \$\{{ secrets.SPECCASTER_BASE_URL }}
@@ -85,18 +87,24 @@ async function main(argv) {
       throw new Error(out + ' already exists. Use --force to overwrite.');
     }
     const gen = generate({ spec, out, baseUrl: opt.base_url });
-    writeGenerated({ content: gen.content, out });
-    fs.mkdirSync('.github/workflows', { recursive: true });
-    fs.writeFileSync('.github/workflows/speccaster.yml', WORKFLOW_TEMPLATE);
+    writeGenerated({ content: gen.content, validateSource: gen.validateSource, out });
+    const wf = '.github/workflows/speccaster.yml';
+    if (fs.existsSync(wf) && !opt.force) {
+      console.log('[speccaster] left', wf, 'in place (use --force to refresh it, e.g. to bump the pinned version)');
+    } else {
+      fs.mkdirSync(path.dirname(wf), { recursive: true });
+      fs.writeFileSync(wf, WORKFLOW_TEMPLATE);
+      console.log('[speccaster] wrote', wf);
+    }
     console.log('[speccaster] wrote', out, `(${gen.content.split('\n').filter((l) => l.trim()).length} lines, ${gen.spec.paths ? Object.keys(gen.spec.paths).length : 0} paths)`);
-    console.log('[speccaster] wrote .github/workflows/speccaster.yml');
+    console.log('[speccaster] wrote', path.join(path.dirname(out), 'validate.js'), '(the self-contained runtime used by the suite)');
     return 0;
   }
 
   if (cmd === 'test') {
     const gen = generate({ spec, out, baseUrl: opt.base_url });
-    const tmp = path.join(os.tmpdir(), 'speccaster-contract.test.js');
-    writeGenerated({ content: gen.content, out: tmp });
+    const tmp = path.join(os.tmpdir(), 'speccaster-contract-' + process.pid + '.test.js');
+    writeGenerated({ content: gen.content, validateSource: gen.validateSource, out: tmp });
     console.log('[speccaster] running', gen.content.split('\n').filter((l) => l.trim()).length, 'lines of tests');
     return runNodeTest(tmp);
   }

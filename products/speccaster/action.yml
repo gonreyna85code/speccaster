@@ -35,7 +35,7 @@ runs:
       run: |
         ARGS=(--spec "$SPEC" --out "$OUT")
         if [ -n "$BASE" ]; then ARGS+=(--base-url "$BASE"); fi
-        npx -y speccaster@latest drift "${ARGS[@]}"
+        npx -y "speccaster@0.2.2" drift "${ARGS[@]}"
     - name: Run contract tests
       shell: bash
       env:
