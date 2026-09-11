@@ -69,6 +69,22 @@ Launch block: npm publish token (owner). GitHub no longer blocks.
   install (init 0 / drift 0 / test 3/3 green). GitHub Release v0.2.0 + tag push CI green
   (e2e 7/7 on Action runner). Discussions welcome thread live (/discussions/1). Resume result.
 
+### EXP-001-D5 — SEO/content: drift essay + site structure (2026-09-11)
+- hypothesis: A genuine keyword-matched explainer page + sitemap/robots on GitHub Pages
+  brings long-tail organic visits ("openapi spec drift", "contract tests in CI") that convert.
+- channel: gonreyna85code.github.io/speccaster/blog/why-openapi-specs-drift.html (+ blog index,
+  sitemap.xml, robots.txt; landing header/footer links; canonical/OG tags).
+- action: Wrote the essay (3 drift patterns, generated-suite fix, demo CTA); reusable as Show HN text.
+  cost: 0. deadline: 2026-10-25 (aligns EXP-001).
+- success_metric: >0 organic landing hits; blog page 200; indexed. failure_metric: 404 or no index by deadline.
+
+### EXP-001-D6 — real-world spec robustness sweep (2026-09-11)
+- hypothesis: The generator must not crash on real-world OpenAPI docs, or activation dies.
+- action: Ran `speccaster init` against GitHub REST spec (815 paths, OpenAPI 3.0.3 → 16,013-line
+  suite, exit 0) and Swagger Petstore 3.0.4 (exit 0). Both generated cleanly. Deeper edge fuzzing
+  deferred until metrics justify it.
+- cost: 0. success_metric: 0 crashes on sightsweep specs. failure_metric: crash on any real spec → fix in-hours.
+
 ## Pricing evidence (2026-09-10)
 - Stoplight platform: Basic $44/mo → Pro Team $362/mo (per team, monthly). Spectral is free OSS.
 - Schemathesis: free MIT OSS + commercial cloud; property-based (not the same wedge).

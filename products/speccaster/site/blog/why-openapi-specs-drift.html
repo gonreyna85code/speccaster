@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why OpenAPI specs drift — and how to make your CI catch it</title>
+<meta name="description" content="Your OpenAPI spec and your tests drift apart quietly until production breaks. Learn the three drift patterns and how a generated, committed contract-test suite fails your CI before deploy.">
+<link rel="canonical" href="https://gonreyna85code.github.io/speccaster/blog/why-openapi-specs-drift.html">
+<meta property="og:title" content="Why OpenAPI specs drift — and how to make your CI catch it">
+<meta property="og:description" content="Three drift patterns, one fix: a generated contract suite your CI fails on.">
+<meta property="og:type" content="article">
+<style>
+  :root { --ink:#111; --mut:#666; --accent:#2563eb; --bg:#fafafa; --line:#e5e7eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; }
+  .wrap { max-width:720px; margin:0 auto; padding:48px 24px 96px; }
+  a { color:var(--accent); }
+  h1 { font-size:2rem; letter-spacing:-.02em; line-height:1.25; }
+  .meta { color:var(--mut); font-size:.9rem; margin-bottom:1.6em; }
+  pre { background:#0f172a; color:#e2e8f0; padding:16px 18px; border-radius:10px; overflow-x:auto; font-size:.86rem; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  p code, li code, h3 code { background:#eef2ff; color:#3730a3; padding:1px 6px; border-radius:5px; font-size:.9em; }
+  blockquote { border-left:3px solid var(--accent); margin:1.4em 0; padding:.2em 1em; color:var(--mut); }
+  .cta { margin-top:2em; padding:1.2em 1.4em; border:1px solid var(--line); border-radius:12px; background:#fff; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; font-weight:600; padding:10px 20px; border-radius:8px; text-decoration:none; margin-top:.6em; }
+  footer { margin-top:48px; border-top:1px solid var(--line); padding-top:16px; color:var(--mut); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p><a href="../">← SpecCaster</a></p>
+  <h1>Why your OpenAPI spec drifts — and how to make CI catch it</h1>
+  <p class="meta">SpecCaster blog · 2026-09-11 · 3 min read</p>
+
+  <p>The worst bugs are the quiet ones. An API endpoint silently changes shape,
+  and nothing on your team notices until the mobile app ships against a payload
+  nobody documented anymore.</p>
+
+  <p>This is called <strong>spec drift</strong>. Your OpenAPI document stops matching
+  both the code and the test suite. Here are the three patterns it usually takes.</p>
+
+  <h2>Pattern 1: the code moves, the spec doesn't</h2>
+  <p>A quick fix changes a response field from <code>user_id</code> to <code>userId</code>.
+  The spec still says <code>user_id</code>. The spec now describes an API that doesn't exist.</p>
+
+  <h2>Pattern 2: the test moves, neither notices</h2>
+  <p>Someone relaxes an assertion to make a flaky test pass. The test still passes
+  and now verifies nothing. For API tests this is how a <code>200</code> with the
+  wrong body sails through every review.</p>
+
+  <h2>Pattern 3: the spec moves, nothing regenerates</h2>
+  <p>A new endpoint is added — spec updated, docs updated, test suite untouched.
+  The contract test for the new endpoint simply doesn't exist. Green build,
+  no coverage, happy silence.</p>
+
+  <blockquote>In all three cases the failure mode is the same: the repository is
+  internally inconsistent, and nothing in the pipeline is allowed to object.</blockquote>
+
+  <h2>The fix: make the committed suite the single source of truth</h2>
+  <p>Hand-maintained test files drift because keeping them in sync is manual. Make
+  the generated artifact <em>the</em> artifact, and CI becomes the referee:</p>
+
+  <pre># every PR: regenerate from the spec, then confirm nothing changed
+npx speccaster drift --spec openapi.yaml --out speccaster/contract.test.js
+# exit code 0  →  suite is in sync with the spec
+# exit code 1  →  build fails, PR blocked, diff is visible
+
+# then actually run the contract tests against a live server
+SPECCASTER_BASE_URL=https://api.example.com/v1 \
+  node --test speccaster/contract.test.js</pre>
+
+  <p>Pattern 1 and 3 now fail the build on the first PR that touches the spec.
+  Pattern 2 is the human part — but now the generated tests are plain,
+  auditable <code>node:test</code> files, so a "relaxed assertion" diff is
+  visible in every code review instead of hiding in a framework.</p>
+
+  <h2>What the generated suite covers</h2>
+  <p>For every path and operation, SpecCaster emits a test that calls the endpoint
+  with sample payloads derived from your request schemas and asserts the response
+  status and content-type match the spec. You extend the file with your own deeper
+  assertions — it's your test, committed to your repo.</p>
+
+  <p>OpenAPI 3.0 and 3.1, JSON or YAML, Node 18+. No server, no credentials, no
+  SaaS dashboard — the CLI makes zero network calls. Free, MIT, not crippled.</p>
+
+  <div class="cta">
+    <strong>See it work in seconds:</strong>
+    <pre style="margin:.6em 0;">npx speccaster demo</pre>
+    <p style="margin:0;color:var(--mut)">Spins up an ephemeral API, generates the suite, runs it green,
+    then shows a spec edit changing the suite — the drift gate, live. Nothing written to your repo.</p>
+    <a class="btn" href="../">Get started with SpecCaster</a>
+  </div>
+
+  <footer><a href="../">SpecCaster</a> — open-source (MIT). Generated by the operating log; honest about adoption, no fabricated metrics.</footer>
+</div>
+</body>
+</html>

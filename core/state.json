@@ -54,9 +54,9 @@
   "technical_health": "nominal",
   "financial_health": "unfunded",
   "next_actions": [
-    "OWNER (optional): add NPM_TOKEN secret in repo Settings>Secrets/actions for automated tag-publish (until then CI skips publish with tests passing), and/or use the remaining granular token in-memory for future manual publishes",
+    "OWNER (optional): add NPM_TOKEN secret in repo Settings>Secrets/actions for automated tag-publish (until then CI skips publish with tests passing), and/or use the granular token in-memory for future manual publishes",
     "run check-metrics daily (memory/metrics.jsonl); drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
-    "community channel: owner posts Show HN / r/node from docs/LAUNCH.md (identity-bound; operator cannot post)",
+    "community channel: owner posts Show HN / r/node from docs/LAUNCH.md (identity-bound; operator cannot post); blog essay in site/blog/ is Show-HN-ready copy",
     "owner provisions Lemon Squeezy account + API key + payout method -> enable fiat block",
     "monitor npm downloads counter (API lag), stars, issues weekly; calibrate Pro pricing when adoption data exists"
   ]

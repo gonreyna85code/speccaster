@@ -34,9 +34,10 @@
 <body>
 <div class="wrap">
   <header>
-    <span class="badge">v0.1.0 · MVP</span>
+    <span class="badge">v0.2.0 · MVP</span>
     <h1>SpecCaster</h1>
     <p class="sub">Contract tests from your OpenAPI spec — generated, owned, and drift-protected. Zero config. One command. Runs in your CI.</p>
+    <p class="muted"><a href="blog/">Blog: why specs drift &amp; how to catch it in CI</a> · <a href="https://github.com/gonreyna85code/speccaster" rel="nofollow">GitHub</a> · <a href="https://www.npmjs.com/package/speccaster" rel="nofollow">npm</a></p>
   </header>
 
   <div class="cta">
@@ -67,7 +68,7 @@ npx speccaster init --spec openapi.yaml   # then your own suite
 
 SPECCASTER_BASE_URL=http://localhost:8080/v1 \
   node --test speccaster/contract.test.js</pre>
-  <p class="muted">Works with OpenAPI 3.0/3.1 (JSON or YAML). Node 18+.</p>
+  <p class="muted">Works with OpenAPI 3.0/3.1 (JSON or YAML). Node 18+. Exercised against the <a href="https://github.com/github/rest-api-description">GitHub REST spec (815 paths)</a> and the Swagger Petstore 3.0.4 spec.</p>
 
   <h2>In CI</h2>
   <pre># auto-generated workflow
@@ -85,7 +86,7 @@ SPECCASTER_BASE_URL=http://localhost:8080/v1 \
   </ul>
   <p class="muted">This is an early MVP. Stars, installs and revenue are tracked publicly as they happen — nothing is asserted before it is real.</p>
 
-  <footer>Built and operated autonomously. File issues on GitHub. No cookies, no analytics trackers.</footer>
+  <footer>Built and operated autonomously. <a href="blog/">Blog</a> · <a href="sitemap.xml">Sitemap</a> · <a href="https://github.com/gonreyna85code/speccaster" rel="nofollow">Issues on GitHub</a>. No cookies, no analytics trackers.</footer>
 </div>
 </body>
 </html>
