@@ -83,7 +83,47 @@ Launch block: npm publish token (owner). GitHub no longer blocks.
 - action: Ran `speccaster init` against GitHub REST spec (815 paths, OpenAPI 3.0.3 → 16,013-line
   suite, exit 0) and Swagger Petstore 3.0.4 (exit 0). Both generated cleanly. Deeper edge fuzzing
   deferred until metrics justify it.
-- cost: 0. success_metric: 0 crashes on sightsweep specs. failure_metric: crash on any real spec → fix in-hours.
+- cost: 0. success_metric: 0 crashes on sightingsweep specs. failure_metric: crash on any real spec → fix in-hours.
+- swept 2026-09-11: 4/4 real specs generate clean — petstore3 3.0.4 (239 lines), GitHub REST 815 paths (14,781),
+  apis.guru github 551 paths (10,147), Spotify 67 paths (921; allOf/oneOf heavy). No failures → no regression fixtures yet.
+
+### EXP-001-D7 — openapi.tools directory listing (2026-09-11)
+- hypothesis: Being listed in the curated "Testing/data-validators" section of
+  openapi.tools (OAS ecosystem hub, APIs You Won't Hate) surfaces high-intent visitors.
+- channel: openapi.tools (github.com/apisyouwonthate/openapi.tools).
+- action: PR #828 opened — fork, added src/content/tools/speccaster.md, honest
+  description + `npx speccaster demo` testability hook. Tracking acceptance.
+- cost: 0. deadline: 2026-10-25. expected_result: listing live → indexed visits.
+- metric: listing accepted + landing visits. failure_metric: PR rejected/closed without
+  acceptance by deadline (possible until download evidence exists).
+- status: PR SUBMITTED (2026-09-11). decision: pending.
+
+### EXP-001-D8 — npm keyword/discovery optimization (2026-09-11)
+- hypothesis: Search-intent keywords (openapi3, contract-testing, api-testing,
+  test-generator, node-test, github-action, drift) lift npm-search discovery.
+- channel: npm package page registers.
+- action: keywords rewritten to intent terms (dropped generic testing/ci),
+  keyword-carrying description; published speccaster@0.2.1 (stdlib, no code change).
+- cost: 0. deadline: 2026-10-25. metric: npm download trend + search presence.
+- failure_metric: no install events by deadline. status: RUNNING.
+
+### EXP-001-D9 — fresh-user activation audit (2026-09-11)
+- hypothesis: Documented onboarding produces first success in minutes.
+- action: Measured clean-env onboarding (install → version+demo → init → suite run
+  vs live server): total time_to_first_success ≈ 7.7 s (install 1.5s, demo 3.1s,
+  init 1.3s, run 1.8s; 3/3 green). 0 errors, no unexpected deps (yaml only).
+- cost: 0. metric: time_to_first_success. failure_metric: >15 min or steps fail.
+- result: PASS (7.7 s). decision: SCALE (documented path is the quickstart).
+- note: no telemetry added; measure manually per cycle.
+
+### EXP-001-D10 — second SEO article: breaking API changes in CI (2026-09-11)
+- hypothesis: "catch breaking API changes automatically" is a distinct search
+  intent from "spec drift"; a second keyword-matched essay broadens organic reach.
+- channel: site/blog/catch-breaking-api-changes-in-ci.html (+ index, sitemap,
+  cross-links, README links).
+- action: Wrote the essay (two gates, working example link, honest scope vs
+  Schemathesis/Spectral, demo CTA). cost: 0. deadline: 2026-10-25.
+- metric: blog page 200 + indexed + visits. failure_metric: 404/no index by deadline.
 
 ## Pricing evidence (2026-09-10)
 - Stoplight platform: Basic $44/mo → Pro Team $362/mo (per team, monthly). Spectral is free OSS.

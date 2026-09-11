@@ -1,35 +1,37 @@
 {
   "version": 1,
-  "updated_at": "2026-09-11T00:20:00Z",
+  "updated_at": "2026-09-11T02:15:00Z",
   "status": "experimentation",
   "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
   "current_strategy": "validate EXP-001 (adoption) before monetizing; activation-first (demo command); distribution experiments running; monetization prep = pricing evidence collected",
   "revenue": {
-    "lifetime": 0.0,
-    "current_month": 0.0
+    "lifetime": 0,
+    "current_month": 0
   },
   "profit": {
-    "available": 0.0,
-    "reserved_tax": 0.0,
-    "lifetime": 0.0
+    "available": 0,
+    "reserved_tax": 0,
+    "lifetime": 0
   },
   "cash": {
-    "available": 0.0,
-    "operating_budget": 0.0,
-    "min_reserve": 0.0
+    "available": 0,
+    "operating_budget": 0,
+    "min_reserve": 0
   },
   "expenses": {
-    "lifetime": 0.0,
-    "current_month": 0.0
+    "lifetime": 0,
+    "current_month": 0
   },
   "customers": {
     "count": 0,
     "recurring": 0
   },
   "conversion_rate": null,
-  "experiments": ["EXP-001"],
+  "experiments": [
+    "EXP-001"
+  ],
   "active_services": [
-    "SpecCaster npm package — PUBLISHED speccaster@0.2.0 (latest; adds 'demo' activation command); verified from clean registry install (init 0 / drift 0 / test 3/3 green); URL https://www.npmjs.com/package/speccaster",
+    "SpecCaster npm package — PUBLISHED speccaster@0.2.1 (latest; keyword/discovery optimization); verified 0.2.1 from clean env (fresh-user 7.7s to green); https://www.npmjs.com/package/speccaster",
     "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live; main = 0f9d59e; topic openapi3 set; GitHub Release v0.2.0 live (tag push CI green, npm publish auto-guarded until NPM_TOKEN secret set); Discussions live (welcome thread: /discussions/1)",
     "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200"
   ],
@@ -54,10 +56,9 @@
   "technical_health": "nominal",
   "financial_health": "unfunded",
   "next_actions": [
-    "OWNER (optional): add NPM_TOKEN secret in repo Settings>Secrets/actions for automated tag-publish (until then CI skips publish with tests passing), and/or use the granular token in-memory for future manual publishes",
-    "run check-metrics daily (memory/metrics.jsonl); drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
-    "community channel: owner posts Show HN / r/node from docs/LAUNCH.md (identity-bound; operator cannot post); blog essay in site/blog/ is Show-HN-ready copy",
-    "owner provisions Lemon Squeezy account + API key + payout method -> enable fiat block",
-    "monitor npm downloads counter (API lag), stars, issues weekly; calibrate Pro pricing when adoption data exists"
+    "run check-metrics daily; drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
+    "monitor openapi.tools PR #828 status",
+    "owner-bound queue unchanged: HN/Reddit/2FA npm automation/Lemon Squeezy (no repeat asks)",
+    "re-measure fresh-user audit each milestone; watch npm downloads counter (API lag → record unknown)"
   ]
 }

@@ -3,6 +3,13 @@
 All notable changes to SpecCaster are recorded here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.1] - 2026-09-11
+
+### Changed
+- npm metadata: search-intent keywords (openapi3, test-generator, node-test,
+  github-action, drift, api-testing) and a keyword-carrying description to
+  improve npm discovery. No code behavior change.
+
 ## [0.2.0] - 2026-09-10
 
 ### Added

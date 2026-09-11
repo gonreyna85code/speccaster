@@ -1,0 +1,30 @@
+[
+  {
+    "id": "petstore3",
+    "url": "https://petstore3.swagger.io/api/v3/openapi.json",
+    "version": "3.0.4",
+    "paths": 13,
+    "keywords": ["real", "official-sample"]
+  },
+  {
+    "id": "github-rest",
+    "url": "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json",
+    "version": "3.0.3",
+    "paths": 815,
+    "keywords": ["real", "huge", "polymorphism", "workflows"]
+  },
+  {
+    "id": "apis-guru-github",
+    "url": "https://api.apis.guru/v2/specs/github.com/1.1.4/openapi.json",
+    "version": "3.0.3",
+    "paths": 551,
+    "keywords": ["real", "oneOf", "anyOf", "allOf"]
+  },
+  {
+    "id": "spotify",
+    "url": "https://api.apis.guru/v2/specs/spotify.com/1.0.0/openapi.json",
+    "version": "3.0.3",
+    "paths": 67,
+    "keywords": ["real", "allOf", "oneOf", "enums"]
+  }
+]

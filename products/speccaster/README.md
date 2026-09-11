@@ -108,6 +108,11 @@ Add your own deeper assertions in the same file — they're your tests.
 - **Pro** (private repos, teams, priority support): planned once the free
   tier has real users. No revenue is claimed before any is confirmed.
 
+## Learn more
+
+- [Why OpenAPI specs drift — and how CI catches it](./site/blog/why-openapi-specs-drift.html)
+- [How to catch breaking API changes automatically in CI](./site/blog/catch-breaking-api-changes-in-ci.html)
+
 ## Development
 
 ```bash
