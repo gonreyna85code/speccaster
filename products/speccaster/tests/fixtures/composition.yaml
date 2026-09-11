@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: Composition fixture
+  version: 1.0.0
+paths:
+  /cats:
+    get:
+      operationId: listCats
+      responses:
+        '200':
+          description: Mixed cats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cat'
+components:
+  schemas:
+    Cat:
+      oneOf:
+        - $ref: '#/components/schemas/Kitten'
+        - $ref: '#/components/schemas/GrownCat'
+    Kitten:
+      type: object
+      required: [kind, age]
+      properties:
+        kind:
+          type: string
+          const: kitten
+        age:
+          type: integer
+          maximum: 1
+    GrownCat:
+      type: object
+      required: [kind, nickname]
+      properties:
+        kind:
+          type: string
+          const: grown
+        nickname:
+          type: string
+      allOf:
+        - type: object
+          properties:
+            tail:
+              type: string
+    CatTree:
+      title: recursive
+      type: object
+      required: [name, children]
+      properties:
+        name:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatTree'

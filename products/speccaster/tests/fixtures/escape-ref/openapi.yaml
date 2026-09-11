@@ -1,0 +1,15 @@
+openapi: 3.0.3
+info:
+  title: Escape attempt
+  version: 1.0.0
+paths:
+  /evil:
+    get:
+      operationId: evil
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '../secret.json#/x'

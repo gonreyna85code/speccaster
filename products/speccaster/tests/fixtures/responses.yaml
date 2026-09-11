@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Responses fixture
+  version: 1.0.0
+paths:
+  /items:
+    get:
+      operationId: listItems
+      responses:
+        '2XX':
+          description: any success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [id]
+                  properties:
+                    id:
+                      type: integer
+        default:
+          description: anything else
+    post:
+      operationId: createItem
+      responses:
+        '201':
+          description: created
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+                required: [id]
+                properties:
+                  id:
+                    type: integer
+        '204':
+          description: no content
+  /items/{id}:
+    get:
+      operationId: getItem
+      responses:
+        '200':
+          description: ok
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: missing
+  /ping:
+    head:
+      operationId: pingHead
+      responses:
+        '204':
+          description: ok

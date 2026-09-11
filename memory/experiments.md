@@ -125,6 +125,49 @@ Launch block: npm publish token (owner). GitHub no longer blocks.
   Schemathesis/Spectral, demo CTA). cost: 0. deadline: 2026-10-25.
 - metric: blog page 200 + indexed + visits. failure_metric: 404/no index by deadline.
 
+### EXP-001-D11 — Phase-5 first-10-users: prospect pipeline + directory verification (2026-09-11)
+- hypothesis: Targeting repos with *documented* OpenAPI-drift pain converts faster than cold docs/SEO; verified directory status removes untracked channels.
+- action: (P0) Verified openapi.tools PR #828 OPEN on apisyouwonthate/openapi.tools, adds
+  src/content/tools/speccaster.md (48 lines). (P1) awesome-openapi3 auto-indexes via GitHub
+  `openapi3` topic — CONFIRMED SET on repo; apis.guru JSON endpoints 404 → listing UNVERIFIED
+  pending index refresh. (P2) Built marketing/prospects.jsonl (20 rows, 18 external). Top leads
+  with verbatim drift pain: HomericIntelligence/Hermes #431 ("Add CI step to detect openapi.json
+  drift", closed/enhancement; built a manual diff), directus/directus #27700 ("track OpenAPI spec
+  drift for undocumented endpoints and missing methods", open), ClickHouse/clickhousectl #224
+  ("OpenAPI drift: 16 gaps between live spec and library", closed, custom label `openapi-drift`).
+- cost: 0. deadline: 2026-10-11. metric: outreach replies + demo runs + installs.
+- failure_metric: 0 replies and 0 installs by deadline. status: RUNNING (outreach queued; posting
+  needs authenticated GitHub actions). decision: pending.
+
+### EXP-001-D13 — Phase-6 personalized outreach: 5 messages + owner queue (2026-09-11)
+- hypothesis: Maintainers with *documented* drift pain (not SEO signals) convert when the first message
+  problem-first references their exact issue and CTA is a 30s `npx speccaster demo`.
+- action: Deep-inspected Hermes #431 (closed; they asked for a `diff openapi.json` CI job that blocks
+  merge), Directus #27700 (open; catalogged undocumented endpoints), clickhousectl #224 (closed;
+  custom `openapi-drift` label). Wrote 5 personalized drafts (50-120 words) → marketing/outreach-queue.md
+  (OS-001..OS-005). Classifications: Hermes/Directus/api-drift-ci/jest-openapi/openai-node = OWNER_SEND;
+  clickhousectl = DO_NOT_CONTACT (Rust SDK-drift workflow ≠ JS/node:test CLI; honesty guard, no invention).
+  A/B frames: drift(A) vs CI(B) per-prospect, tracked MKT-011 (low n, directional only).
+- cost: 0. deadline: 2026-10-11. metric: responses/positive/demo_interest/installs/activations.
+- failure_metric: 0 replies and 0 installs by deadline, or any sent message that was canned/low-relevance.
+- status: QUEUED — all posting needs owner GitHub account (no gh CLI, no Composio MCP, no token in env).
+  Do NOT repeat permission asks per no-repeat-ask rule; queue stays OWNER_SEND. decision: pending.
+
+### EXP-001-D14 — outreach send/response tracking (2026-09-11, lifecycle)
+- On each send: set `message_status: SENT` in marketing/prospects.jsonl (OS-xxx id), record reply
+  classification (PROBLEM_CONFIRMED/PROBLEM_NOT_PRIORITIZED/ALREADY_SOLVED/WRONG_TOOL/TOO_COMPLEX/
+  INTERESTED/WANTS_DEMO/WANTS_FEATURE/PRICE_OBJECTION/NO_RESPONSE), and append to this log.
+- Product signals from replies → marketing/voice-of-customer.jsonl (inbound) + DECISIONS.md when material.
+- No-reply policy: max 1 initial + 1 useful follow-up, then respect silence.
+
+### EXP-001-D12 — first-10-user scoreboard + metric tracking (2026-09-11)
+- hypothesis: Direct-prospect channels plus autonomous distribution (openapi.tools, awesome-openapi3,
+  npm, dev-centric outreach) reach 10 activated users faster than waiting on owner-bound launch posts.
+- action: Progress tracked in marketing/prospects.jsonl + experiments MKT-007..009; metrics via
+  scripts/check-metrics.js (OBSERVED states only). No telemetry was added to the package.
+- expected_users: 10 activated (demo/init/CI added). cost: 0. deadline: 2026-10-25 (EXP-001 window).
+- success_metric: >=10 installs with activation evidence; >=1 paying. failure_metric: <10 by deadline.
+
 ## Pricing evidence (2026-09-10)
 - Stoplight platform: Basic $44/mo → Pro Team $362/mo (per team, monthly). Spectral is free OSS.
 - Schemathesis: free MIT OSS + commercial cloud; property-based (not the same wedge).

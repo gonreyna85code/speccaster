@@ -3,6 +3,46 @@
 All notable changes to SpecCaster are recorded here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.2] - 2026-09-11
+
+### Added
+- **Response body validation.** Generated suites now validate `2xx` JSON/text
+  response bodies against the declared schema with a self-contained,
+  dependency-free validator written next to the suite (`speccaster/validate.js`).
+  Failures are structured: operation, property path, expected vs. received.
+- **$ref hardening.** Consistent local `$ref` resolution everywhere (parameters,
+  request bodies, responses, path items, nested schemas), including JSON Pointer
+  escaping (`~0`/`~1`, percent-decoding), OpenAPI 3.1 `$defs`, circular-chain
+  detection (no infinite recursion), and local *external* file refs
+  (`./schemas/user.yaml#/components/schemas/User`) with path-safety and clear
+  errors instead of silent fallback.
+- **Parameter serialization.** `form` (explode on/off), `pipeDelimited`,
+  `spaceDelimited`, `deepObject` for query params; `simple` for path params.
+- **Server variables.** `servers[].url` templates are substituted using
+  declared defaults. `SPECCASTER_BASE_URL` / `--base-url` still win.
+- **Status semantics.** `2XX`/`4XX`/`5XX` wildcards and `default` response keys
+  are accepted by the generated matcher (exact codes still required otherwise).
+- **Request body media types.** `application/json`, `application/*+json`,
+  `application/x-www-form-urlencoded`, `text/plain` are generated; unsupported
+  media (e.g. `multipart/form-data`) produce an explicit skipped test + warning
+  instead of an invalid request.
+- **Sampler correctness.** `readOnly` never sent in request bodies; `writeOnly`
+  never required by response validation; `int64` stays numeric in JSON bodies;
+  min/max exclusive bounds, `minLength`/`maxLength`, `minItems`, `enum`/`const`,
+  nullable / 3.1 `type` arrays and `prefixItems` handled.
+- **Determinism regression tests.** `generate(spec) === generate(spec)`
+  byte-identical; lightweight mutation fuzzer (`node scripts/fuzz.js`).
+- Unit/compat suite (`npm test` now runs 34 unit tests + end-to-end).
+
+### Changed
+- Generated workflow and the composite action pin `speccaster@0.2.2`
+  (reproducible drift); `init` no longer overwrites an existing workflow unless
+  you pass `--force`.
+- Generated paths are embedded as JSON string literals (hostile spec paths
+  cannot inject JS into the generated suite).
+- A header comment reminds that mutating operations send real traffic — point
+  `SPECCASTER_BASE_URL` at a test environment.
+
 ## [0.2.1] - 2026-09-11
 
 ### Changed

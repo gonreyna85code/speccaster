@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Refs fixture
+  version: 1.0.0
+paths:
+  /users/{id}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUser
+      responses:
+        '200':
+          $ref: '#/components/responses/UserOk'
+        '404':
+          description: Missing
+    delete:
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        '204':
+          description: Deleted
+  /users:
+    post:
+      operationId: createUser
+      requestBody:
+        $ref: '#/components/requestBodies/NewUser'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  parameters:
+    UserId:
+      name: id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/Id'
+  requestBodies:
+    NewUser:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewUser'
+  responses:
+    UserOk:
+      description: Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+  schemas:
+    Id:
+      type: integer
+      minimum: 1
+    NewUser:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+    User:
+      allOf:
+        - $ref: '#/components/schemas/NewUser'
+        - type: object
+          required: [id]
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'

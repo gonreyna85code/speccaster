@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI 3.1 fixture
+  version: 1.0.0
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: [integer, 'null']
+            exclusiveMinimum: 0
+        - name: sort
+          in: query
+          schema:
+            $ref: '#/$defs/Sort'
+      responses:
+        '200':
+          description: Orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Order:
+      type: object
+      required: [id, status]
+      properties:
+        id:
+          type: integer
+          exclusiveMinimum: 0
+        status:
+          $ref: '#/$defs/Status'
+        note:
+          type: ['string', 'null']
+        total:
+          type: number
+          exclusiveMinimum: 0
+        tags:
+          type: array
+          prefixItems:
+            - type: string
+            - type: integer
+          minItems: 1
+$defs:
+  Sort:
+    type: string
+    enum: [asc, desc]
+  Status:
+    type: string
+    const: placed

@@ -12,7 +12,7 @@ out of sync, the build goes red — before production does.
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/gonreyna85code/speccaster">
 </p>
 
-Status: **MVP (v0.2.0)**. Cross-platform, works offline, zero recurring cost.
+Status: **MVP (v0.2.2)** — hardening release. Cross-platform, works offline, zero recurring cost.
 
 ## Try it in seconds
 
@@ -43,7 +43,7 @@ they must agree on.
 ```bash
 npx speccaster demo                       # prove it works in seconds
 npx speccaster init --spec openapi.yaml   # then generate your own suite
-# writes speccaster/contract.test.js + .github/workflows/speccaster.yml
+# writes speccaster/contract.test.js + speccaster/validate.js + .github/workflows/speccaster.yml
 
 # point the tests at your running API and execute
 SPECCASTER_BASE_URL=http://localhost:8080/v1 node --test speccaster/contract.test.js
@@ -64,11 +64,14 @@ Your CI workflow then blocks anything that drifts:
 Or as a reusable action:
 
 ```yaml
-- uses: gonreyna85code/speccaster/products/speccaster@v1
+- uses: gonreyna85code/speccaster/products/speccaster@main
   with:
     spec: openapi.yaml
     base-url: http://localhost:8080/v1
 ```
+
+> The generated workflow and action pin a concrete speccaster version (`@0.2.2`)
+> for reproducible drift checks. To receive updates, bump the pinned version.
 
 ## Examples
 
@@ -80,7 +83,7 @@ a complete API + spec + committed generated suite + CI workflow.
 
 | Command | Effect |
 |---|---|
-| `speccaster init` | Generate the suite + workflow. Fails if the file exists unless `--force`. |
+| `speccaster init` | Generate `speccaster/contract.test.js` + `validate.js` + workflow (existing files kept unless `--force`). |
 | `speccaster test` | Generate to a temp file and run it (`node --test`). |
 | `speccaster drift` | Exit non-zero when the committed suite is out of sync with the spec. For CI. |
 | `speccaster demo` | Ephemeral API + generated suite + drift demo. No files kept. |
@@ -91,15 +94,52 @@ mount path, e.g. `https://api.example.com/v1`).
 
 ## What it generates
 
-For every path+method it emits a `node:test` case that:
+`npx speccaster init` writes two committed, owned files:
 
-- calls the operation with sample payloads derived from your schemas
-  (path/required-query params and request bodies),
-- asserts the status is one the spec declares as success,
-- asserts the `content-type` matches the declared media type
-  (`HEAD`/`OPTIONS`/error-only responses are tolerated).
+- `speccaster/contract.test.js` — the `node:test` suite. For every path+method it
+  emits a test that:
+  - calls the operation with sample payloads derived from your schemas (path and
+    required-query params, request bodies; `readOnly` fields are never sent),
+  - asserts the status matches one of the declared responses (exact codes,
+    `2XX`-style ranges and `default` are honored),
+  - asserts the `content-type` matches the declared media type (charset params
+    and `application/*+json` handled),
+  - validates the success response body against the declared schema — object /
+    array / string / number / integer / boolean / enum / required / nested /
+    nullable / composition (`oneOf`/`anyOf`/`allOf`). Failures are readable:
+    `response.body.email — expected string, received number`.
+- `speccaster/validate.js` — the self-contained, dependency-free runtime the
+  suite uses. It only changes when you upgrade SpecCaster.
+
+Request bodies: `application/json`, `application/*+json`,
+`application/x-www-form-urlencoded` and `text/plain` are generated.
+`multipart/form-data` and other media types produce an explicit skipped test +
+warning (add the body yourself — never an invalid request).
+
+Other behavior:
+
+- `$ref` is resolved consistently — local pointers (`#/components/...`,
+  `#/$defs/...`, `~0`/`~1`), and local files (`./schemas/user.yaml#/...`) with
+  path-safety. Unresolvable refs fail with a clear message, never silently.
+- Server URLs with `{variables}` use their declared defaults. Override with
+  `--base-url` or `SPECCASTER_BASE_URL`.
+- OpenAPI 3.0.x and 3.1.x are both supported (3.1 `type` arrays, `const`,
+  `$defs`, `prefixItems`, boolean schemas).
 
 Add your own deeper assertions in the same file — they're your tests.
+
+> Generated tests send **real traffic**. Mutating operations
+> (POST/PUT/PATCH/DELETE) modify whatever you point them at — run them against a
+> **test environment** via `SPECCASTER_BASE_URL`.
+
+## Development
+
+```bash
+npm install
+npm test          # 34 unit/compat tests + end-to-end (fixture API, generate, run, drift)
+node scripts/fuzz.js         # deterministic schema-variant fuzz (offline)
+node scripts/robustness.js   # real-world corpus sweep (needs network)
+```
 
 ## Pricing
 

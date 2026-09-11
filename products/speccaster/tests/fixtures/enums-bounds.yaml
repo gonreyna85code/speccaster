@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: Enums and bounds fixture
+  version: 1.0.0
+paths:
+  /vouchers:
+    post:
+      operationId: issueVoucher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Voucher'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voucher'
+components:
+  schemas:
+    Voucher:
+      type: object
+      required: [code, amount, kind, label]
+      properties:
+        code:
+          type: string
+          minLength: 8
+          maxLength: 12
+        amount:
+          type: integer
+          format: int64
+          minimum: 100
+          maximum: 500
+        kind:
+          type: string
+          enum: [standard, premium]
+        label:
+          type: string
+          const: voucher
+        big:
+          type: integer
+          format: int64
+          minimum: 9007199254740993
+        ratio:
+          type: number
+          exclusiveMinimum: 0
+          exclusiveMaximum: 1
+        note:
+          type: string
+          nullable: true
+        channels:
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2

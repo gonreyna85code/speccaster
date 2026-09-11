@@ -16,7 +16,7 @@ jobs:
       - name: Start API
         run: PORT=8080 node server.js &
       - name: Regenerate + drift gate
-        run: npx -y speccaster@latest drift --spec openapi.yaml --out speccaster/contract.test.js
+        run: npx -y speccaster@0.2.2 drift --spec openapi.yaml --out speccaster/contract.test.js
       - name: Run contract tests
         env:
           SPECCASTER_BASE_URL: http://localhost:8080/v1
