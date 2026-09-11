@@ -163,7 +163,7 @@ async function runDemo() {
 
   console.log('[speccaster] demo: spun up an ephemeral API (' + baseUrl + ') and generated contract tests from an embedded OpenAPI spec.');
   const gen = generate({ spec: specFile, out: outFile, baseUrl });
-  writeGenerated({ content: gen.content, out: outFile });
+  writeGenerated({ content: gen.content, validateSource: gen.validateSource, out: outFile });
   const status = await runTestsAsync(outFile);
 
   const mutated = DEMO_SPEC.replace(/\n    post:/, '\n    patchSomething:');
