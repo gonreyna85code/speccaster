@@ -55,10 +55,47 @@
   ],
   "technical_health": "nominal",
   "financial_health": "unfunded",
+  "marketing": {
+    "initialized_at": "2026-09-11",
+    "files_created": [
+      "marketing/product-marketing.md",
+      "marketing/strategy.md",
+      "marketing/positioning.md",
+      "marketing/icp.md",
+      "marketing/competitors.jsonl",
+      "marketing/voice-of-customer.jsonl",
+      "marketing/keyword-map.jsonl",
+      "marketing/channel-map.jsonl",
+      "marketing/experiments.jsonl",
+      "marketing/content-map.json",
+      "marketing/objections.md",
+      "marketing/README.md"
+    ],
+    "content_created": [
+      "site/compare.html (SpecCaster vs Schemathesis vs oasdiff)"
+    ],
+    "seo_fixes": [
+      "Landing page: OG tags, structured data, version badge v0.2.1, favicon",
+      "Blog posts: Article schema, article meta tags",
+      "Sitemap: added compare.html"
+    ],
+    "current_bottleneck": "zero_impressions",
+    "top_opportunities_ranked": [
+      "openapi.tools PR #828 (pending merge)",
+      "GitHub Action Marketplace listing (owner action needed)",
+      "Show HN / r/node launch (owner approval needed)",
+      "Comparison page (done - compare.html)",
+      "awesome-openapi3 list submission",
+      "Reddit community participation (owner approval needed)"
+    ]
+  },
   "next_actions": [
     "run check-metrics daily; drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
     "monitor openapi.tools PR #828 status",
     "owner-bound queue unchanged: HN/Reddit/2FA npm automation/Lemon Squeezy (no repeat asks)",
-    "re-measure fresh-user audit each milestone; watch npm downloads counter (API lag → record unknown)"
+    "re-measure fresh-user audit each milestone; watch npm downloads counter (API lag → record unknown)",
+    "marketing: deploy landing page SEO fixes (OG tags, structured data, version badge)",
+    "marketing: deploy comparison page (compare.html)",
+    "marketing: deploy blog structured data (Article schema)"
   ]
 }

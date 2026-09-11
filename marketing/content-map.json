@@ -1,0 +1,75 @@
+{
+  "pages": [
+    {
+      "url": "/",
+      "title": "SpecCaster — contract tests from your OpenAPI spec",
+      "type": "landing",
+      "status": "live",
+      "seo_score": 6,
+      "notes": "Good value prop. Needs: OG image, structured data, stronger social proof, version badge update (shows v0.2.0, should be v0.2.1)"
+    },
+    {
+      "url": "/blog/",
+      "title": "SpecCaster blog",
+      "type": "blog-index",
+      "status": "live",
+      "seo_score": 5,
+      "notes": "Minimal. Could add meta description optimization."
+    },
+    {
+      "url": "/blog/why-openapi-specs-drift.html",
+      "title": "Why your OpenAPI spec drifts — and how to make CI catch it",
+      "type": "blog",
+      "status": "live",
+      "seo_score": 7,
+      "notes": "Good content. Has canonical URL, OG tags. Could add structured data (Article schema). Target keyword: 'openapi spec drift'."
+    },
+    {
+      "url": "/blog/catch-breaking-api-changes-in-ci.html",
+      "title": "How to catch breaking API changes automatically in CI",
+      "type": "blog",
+      "status": "live",
+      "seo_score": 7,
+      "notes": "Good content. Has canonical URL, OG tags. Could add structured data (Article schema). Target keyword: 'breaking api changes ci'."
+    }
+  ],
+  "missing_pages": [
+    {
+      "type": "comparison",
+      "title": "SpecCaster vs Schemathesis vs oasdiff — which OpenAPI testing tool do you need?",
+      "target_keyword": "openapi testing tools comparison",
+      "priority": "high",
+      "notes": "High commercial intent. Direct comparison captures decision-stage traffic."
+    },
+    {
+      "type": "tutorial",
+      "title": "How to add OpenAPI contract tests to your CI pipeline",
+      "target_keyword": "openapi contract testing ci",
+      "priority": "high",
+      "notes": "Step-by-step tutorial captures solution-stage traffic."
+    },
+    {
+      "type": "landing",
+      "title": "OpenAPI Drift Detection — catch spec drift before production breaks",
+      "target_keyword": "openapi drift detection",
+      "priority": "medium",
+      "notes": "Problem-aware landing page. Captures top-of-funnel traffic."
+    },
+    {
+      "type": "tutorial",
+      "title": "Generate node:test suites from your OpenAPI spec",
+      "target_keyword": "openapi generate tests node",
+      "priority": "medium",
+      "notes": "How-to content for Node.js developers."
+    }
+  ],
+  "seo_gaps": [
+    "No structured data (Article schema) on blog posts",
+    "No OG images on any page",
+    "Landing page shows v0.2.0 badge (should be v0.2.1)",
+    "No favicon",
+    "No alternate/canonical on landing page",
+    "Blog posts lack author markup",
+    "No JSON-LD structured data anywhere"
+  ]
+}

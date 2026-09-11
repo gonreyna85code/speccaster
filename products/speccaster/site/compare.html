@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpecCaster vs Schemathesis vs oasdiff — OpenAPI testing tools compared</title>
+<meta name="description" content="Which OpenAPI testing tool do you need? SpecCaster generates committed contract tests with a drift gate. Schemathesis fuzzes for bugs. oasdiff compares spec versions. Compare them.">
+<link rel="canonical" href="https://gonreyna85code.github.io/speccaster/compare.html">
+<meta property="og:title" content="SpecCaster vs Schemathesis vs oasdiff — OpenAPI testing tools compared">
+<meta property="og:description" content="Which OpenAPI testing tool do you need? Compare SpecCaster, Schemathesis, and oasdiff.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gonreyna85code.github.io/speccaster/compare.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SpecCaster vs Schemathesis vs oasdiff — OpenAPI testing tools compared",
+  "description": "Which OpenAPI testing tool do you need? SpecCaster generates committed contract tests with a drift gate. Schemathesis fuzzes for bugs. oasdiff compares spec versions.",
+  "datePublished": "2026-09-11",
+  "author": {
+    "@type": "Organization",
+    "name": "SpecCaster"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SpecCaster"
+  },
+  "mainEntityOfPage": "https://gonreyna85code.github.io/speccaster/compare.html"
+}
+</script>
+<style>
+  :root { --ink:#111; --mut:#666; --accent:#2563eb; --bg:#fafafa; --line:#e5e7eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; }
+  .wrap { max-width:760px; margin:0 auto; padding:48px 24px 96px; }
+  a { color:var(--accent); }
+  h1 { font-size:2rem; letter-spacing:-.02em; line-height:1.25; }
+  .meta { color:var(--mut); font-size:.9rem; margin-bottom:1.6em; }
+  pre { background:#0f172a; color:#e2e8f0; padding:16px 18px; border-radius:10px; overflow-x:auto; font-size:.86rem; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  p code, li code { background:#eef2ff; color:#3730a3; padding:1px 6px; border-radius:5px; font-size:.9em; }
+  table { width:100%; border-collapse:collapse; margin:1.4em 0; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); font-size:.9rem; }
+  th { font-weight:600; background:#fff; }
+  td:first-child { font-weight:500; }
+  .winner { background:#f0fdf4; }
+  .cta { margin-top:2em; padding:1.2em 1.4em; border:1px solid var(--line); border-radius:12px; background:#fff; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; font-weight:600; padding:10px 20px; border-radius:8px; text-decoration:none; margin-top:.6em; }
+  footer { margin-top:48px; border-top:1px solid var(--line); padding-top:16px; color:var(--mut); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p><a href="./">← SpecCaster</a></p>
+  <h1>SpecCaster vs Schemathesis vs oasdiff</h1>
+  <p class="meta">SpecCaster blog · 2026-09-11 · 5 min read</p>
+
+  <p>Three tools, three different jobs. All OpenAPI-related. None are direct replacements for each other. Here's how to choose.</p>
+
+  <h2>The short answer</h2>
+  <ul>
+    <li><strong>SpecCaster</strong> — generates committed contract tests + CI drift gate</li>
+    <li><strong>Schemathesis</strong> — fuzzes your API for bugs using property-based testing</li>
+    <li><strong>oasdiff</strong> — diffs two spec versions and reports breaking changes</li>
+  </ul>
+
+  <h2>Comparison</h2>
+  <table>
+    <tr>
+      <th></th>
+      <th>SpecCaster</th>
+      <th>Schemathesis</th>
+      <th>oasdiff</th>
+    </tr>
+    <tr>
+      <td><strong>What it does</strong></td>
+      <td>Generates <code>node:test</code> files from your spec; CI fails when tests drift</td>
+      <td>Generates thousands of test cases; fuzzes for crashes and validation bugs</td>
+      <td>Compares two spec versions; reports breaking changes</td>
+    </tr>
+    <tr>
+      <td><strong>Input</strong></td>
+      <td>One OpenAPI spec + live API</td>
+      <td>OpenAPI spec + live API (or mock)</td>
+      <td>Two OpenAPI spec versions</td>
+    </tr>
+    <tr>
+      <td><strong>Output</strong></td>
+      <td>Committed <code>node:test</code> file + exit code</td>
+      <td>Test report (Allure, JUnit, terminal)</td>
+      <td>Diff report (JSON, markdown, HTML)</td>
+    </tr>
+    <tr>
+      <td><strong>CI gate</strong></td>
+      <td class="winner">✅ Drift gate (exit 1 when tests are out of sync)</td>
+      <td>✅ Fails on server errors</td>
+      <td>✅ Fails on breaking changes</td>
+    </tr>
+    <tr>
+      <td><strong>Committed artifact</strong></td>
+      <td class="winner">✅ Plain <code>node:test</code> file in your repo</td>
+      <td>❌ Report files (not committed)</td>
+      <td>❌ Report files (not committed)</td>
+    </tr>
+    <tr>
+      <td><strong>Catches spec-vs-reality drift</strong></td>
+      <td class="winner">✅ Generated tests call the live API</td>
+      <td>✅ Fuzzes the live API</td>
+      <td>❌ Only compares spec versions</td>
+    </tr>
+    <tr>
+      <td><strong>Catches spec-vs-spec changes</strong></td>
+      <td>✅ Regeneration changes the committed file</td>
+      <td>❌ Not its job</td>
+      <td class="winner">✅ Primary purpose</td>
+    </tr>
+    <tr>
+      <td><strong>Language</strong></td>
+      <td>Node.js (npm)</td>
+      <td>Python (pip/uvx)</td>
+      <td>Go (binary)</td>
+    </tr>
+    <tr>
+      <td><strong>Runtime dependencies</strong></td>
+      <td class="winner">1 (<code>yaml</code>)</td>
+      <td>Many (Python ecosystem)</td>
+      <td>0 (static binary)</td>
+    </tr>
+    <tr>
+      <td><strong>Setup time</strong></td>
+      <td class="winner"><code>npx speccaster demo</code> — seconds</td>
+      <td><code>uvx schemathesis run URL</code> — minutes</td>
+      <td><code>oasdiff breaking old.yaml new.yaml</code> — seconds</td>
+    </tr>
+    <tr>
+      <td><strong>Stars</strong></td>
+      <td>0 (new)</td>
+      <td>3,500+</td>
+      <td>800+</td>
+    </tr>
+    <tr>
+      <td><strong>License</strong></td>
+      <td>MIT</td>
+      <td>MIT</td>
+      <td>Apache 2.0</td>
+    </tr>
+    <tr>
+      <td><strong>Best for</strong></td>
+      <td>Cheap always-on contract floor</td>
+      <td>Deep bug finding</td>
+      <td>Version compatibility checking</td>
+    </tr>
+  </table>
+
+  <h2>When to use which</h2>
+
+  <h3>Use SpecCaster when:</h3>
+  <ul>
+    <li>You want a committed, auditable test baseline from your OpenAPI spec</li>
+    <li>You want CI to fail when the committed tests fall out of sync with the spec</li>
+    <li>You want zero-config, zero-dependency contract testing</li>
+    <li>You want something that works alongside your existing test suite</li>
+  </ul>
+
+  <h3>Use Schemathesis when:</h3>
+  <ul>
+    <li>You want to find 500 errors, schema violations, and edge-case crashes</li>
+    <li>You want property-based fuzzing with thousands of generated test cases</li>
+    <li>You want stateful testing (create → get → delete workflows)</li>
+    <li>You're comfortable with Python in your toolchain</li>
+  </ul>
+
+  <h3>Use oasdiff when:</h3>
+  <ul>
+    <li>You want to compare two versions of your OpenAPI spec</li>
+    <li>You want to know what changed between releases</li>
+    <li>You want breaking change detection for API versioning</li>
+    <li>You want a git diff driver for OpenAPI</li>
+  </ul>
+
+  <h2>Can I use them together?</h2>
+  <p>Yes. They solve different problems:</p>
+  <ul>
+    <li><strong>oasdiff</strong> catches when the spec itself changes in a breaking way</li>
+    <li><strong>SpecCaster</strong> catches when the committed tests drift from the spec</li>
+    <li><strong>Schemathesis</strong> catches when the API violates the spec in edge cases</li>
+  </ul>
+  <p>All three in CI gives you: spec-version safety + committed-test freshness + deep bug finding.</p>
+
+  <div class="cta">
+    <strong>See SpecCaster in seconds:</strong>
+    <pre style="margin:.6em 0;">npx speccaster demo</pre>
+    <p style="margin:0;color:var(--mut)">Ephemeral API, generated suite, green run, then a spec edit changing the suite live. Nothing written to your repo.</p>
+    <a class="btn" href="./">Get started with SpecCaster</a>
+  </div>
+
+  <footer><a href="./">SpecCaster</a> — open-source (MIT). Related: <a href="blog/why-openapi-specs-drift.html">why specs drift</a> · <a href="blog/catch-breaking-api-changes-in-ci.html">catch breaking changes in CI</a>. No trackers.</footer>
+</div>
+</body>
+</html>
