@@ -18,10 +18,17 @@ Text (first ~3 lines do the work):
 > No server, no dashboard, no credentials, zero network calls at runtime (that's
 > also the privacy story). Generated tests are real files you own and can extend.
 > MIT. `examples/petstore-ci` in the repo is a fully runnable API+spec+suite+CI.
+> No setup demo: `npx speccaster demo` (ephemeral API + suite + drift, nothing written).
 >
 > Problems I know remain: error-only responses are tolerated, sample values are
 > schema-derived (not property coverage), and there's no request-sequence testing —
 > happy path coverage first, which is measured, not claimed.
+
+Extras (post-publication, 2026-09-11): published blog essay (live on landing):
+`gonreyna85code.github.io/speccaster/blog/why-openapi-specs-drift.html` — can be
+shared as the HN discussion link, or reposted to dev.to/Hashnode if the owner wants.
+Real-world robustness validated: generator handles GitHub REST spec (815 paths) and
+Petstore 3.0.4 — mention only if asked.
 
 ## r/node (same day)
 
