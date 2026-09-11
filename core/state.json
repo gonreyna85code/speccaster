@@ -80,22 +80,32 @@
       "Sitemap: added compare.html"
     ],
     "current_bottleneck": "zero_impressions",
+    "phase5_progress": {
+      "started_at": "2026-09-11",
+      "goal": "10 real users (install + activation via npx speccaster demo/init)",
+      "p0_openapi_tools": "PR #828 VERIFIED OPEN 2026-09-11; adds speccaster.md (48 lines) to src/content/tools; categories testing+data-validators. Awaiting maintainer merge.",
+      "p1_awesome_openapi3": "Auto-index via `openapi3` GitHub topic — CONFIRMED SET on repo. apis.guru JSON endpoints 404 → listing UNVERIFIED pending index refresh.",
+      "p2_prospects": "marketing/prospects.jsonl created: 20 rows, 18 external targets. 3 P0 verbatim-drift-pain leads: HomericIntelligence/Hermes #431, directus/directus #27700, ClickHouse/clickhousectl #224 (issue labeled openapi-drift).",
+      "experiments_added": "MKT-007 (outreach), MKT-008 (awesome-openapi3 auto-index), MKT-009 (personalized outreach queue)"
+    },
     "top_opportunities_ranked": [
-      "openapi.tools PR #828 (pending merge)",
+      "Targeted GitHub outreach to 3 P0 drift-pain repos (Hermes/Directus/clickhousectl) — highest signal",
+      "openapi.tools PR #828 (verified OPEN, pending merge)",
       "GitHub Action Marketplace listing (owner action needed)",
       "Show HN / r/node launch (owner approval needed)",
       "Comparison page (done - compare.html)",
-      "awesome-openapi3 list submission",
+      "awesome-openapi3 auto-index (topic set; verify refresh)",
       "Reddit community participation (owner approval needed)"
     ]
   },
   "next_actions": [
     "run check-metrics daily; drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
-    "monitor openapi.tools PR #828 status",
+    "Phase 5 P3: draft 5-10 personalized outreach messages for prospects.jsonl P0/P1 rows (Hermes, Directus, clickhousectl, api-drift-ci, openai-node, openapi-typescript, jest-openapi)",
+    "Phase 5 outreach posting requires authenticated GitHub actions — queue for owner or composio MCP if authorized",
+    "re-verify awesome-openapi3 auto-index once apis.guru endpoints return (currently 404)",
+    "monitor openapi.tools PR #828 status (verified OPEN)",
     "owner-bound queue unchanged: HN/Reddit/2FA npm automation/Lemon Squeezy (no repeat asks)",
     "re-measure fresh-user audit each milestone; watch npm downloads counter (API lag → record unknown)",
-    "marketing: deploy landing page SEO fixes (OG tags, structured data, version badge)",
-    "marketing: deploy comparison page (compare.html)",
-    "marketing: deploy blog structured data (Article schema)"
+    "deploy landing page SEO fixes, comparison page, blog structured data (Phase 1 commits)"
   ]
 }

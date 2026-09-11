@@ -1,8 +1,9 @@
 {"channel":"npm","type":"registry","status":"ACTIVE","effort":"low","expected_impact":"medium","notes":"speccaster@0.2.1 published. Keywords optimized. No downloads yet."}
 {"channel":"GitHub","type":"repository","status":"ACTIVE","effort":"low","expected_impact":"medium","notes":"Public repo. README polished. 0 stars."}
 {"channel":"GitHub Pages","type":"landing","status":"ACTIVE","effort":"low","expected_impact":"medium","notes":"Landing page live. 2 blog posts. Sitemap submitted."}
-{"channel":"openapi.tools","type":"directory","status":"PENDING","effort":"low","expected_impact":"high","notes":"PR #828 submitted. Pending merge. High-authority OpenAPI ecosystem directory."}
+{"channel":"openapi.tools","type":"directory","status":"PR_PENDING","effort":"low","expected_impact":"high","notes":"PR #828 VERIFIED OPEN 2026-09-11 (apisyouwonthate/openapi.tools, adds src/content/tools/speccaster.md 48 lines, testing+data-validators). Awaiting maintainer review."}
 {"channel":"GitHub Action Marketplace","type":"directory","status":"PENDING","effort":"medium","expected_impact":"high","notes":"Action.yml ready. Need to publish as reusable action. High visibility for CI-focused users."}
+{"channel":"GitHub outreach","type":"relationship","status":"QUEUED","effort":"high","expected_impact":"high","notes":"20-prospect DB built (marketing/prospects.jsonl). 3 P0 with verbatim drift pain (Hermes #431, Directus #27700, clickhousectl #224). Posts need authenticated GitHub actions."}
 {"channel":"r/node","type":"community","status":"BLOCKED","effort":"medium","expected_impact":"high","notes":"Show HN / r/node launch post ready. Blocked on owner approval."}
 {"channel":"Hacker News","type":"community","status":"BLOCKED","effort":"medium","expected_impact":"very high","notes":"Show HN post ready. Blocked on owner approval."}
 {"channel":"r/QualityAssurance","type":"community","status":"PENDING","effort":"medium","expected_impact":"medium","notes":"Target audience for contract testing discussions."}
@@ -11,7 +12,7 @@
 {"channel":"r/microservices","type":"community","status":"PENDING","effort":"medium","expected_impact":"medium","notes":"API testing discussions active."}
 {"channel":"DEV.to","type":"blog","status":"PENDING","effort":"medium","expected_impact":"medium","notes":"Could republish blog posts with canonical URLs."}
 {"channel":"Hashnode","type":"blog","status":"PENDING","effort":"medium","expected_impact":"medium","notes":"Could republish blog posts with canonical URLs."}
-{"channel":"awesome-openapi3","type":"list","status":"PENDING","effort":"low","expected_impact":"medium","notes":"GitHub awesome-list. Low effort to submit."}
+{"channel":"awesome-openapi3","type":"list","status":"PENDING","effort":"low","expected_impact":"medium","notes":"Auto-index via `openapi3` topic (CONFIRMED SET on repo). apis.guru JSON endpoints 404 — listing status UNVERIFIED until index refresh. Onboarding = topic tag, no PR."}
 {"channel":"awesome-nodejs","type":"list","status":"PENDING","effort":"low","expected_impact":"high","notes":"High-authority list. Need to meet inclusion criteria."}
 {"channel":"OpenAPI Newsletter","type":"pr","status":"PENDING","effort":"low","expected_impact":"medium","notes":"OpenAPI Initiative newsletter June 2026 mentioned testing tools. Could pitch."}
 {"channel":"Product Hunt","type":"launch","status":"PENDING","effort":"high","expected_impact":"high","notes":"Need Pro tier launched first."}
