@@ -139,6 +139,27 @@ Launch block: npm publish token (owner). GitHub no longer blocks.
 - failure_metric: 0 replies and 0 installs by deadline. status: RUNNING (outreach queued; posting
   needs authenticated GitHub actions). decision: pending.
 
+### EXP-001-D13 — Phase-6 personalized outreach: 5 messages + owner queue (2026-09-11)
+- hypothesis: Maintainers with *documented* drift pain (not SEO signals) convert when the first message
+  problem-first references their exact issue and CTA is a 30s `npx speccaster demo`.
+- action: Deep-inspected Hermes #431 (closed; they asked for a `diff openapi.json` CI job that blocks
+  merge), Directus #27700 (open; catalogged undocumented endpoints), clickhousectl #224 (closed;
+  custom `openapi-drift` label). Wrote 5 personalized drafts (50-120 words) → marketing/outreach-queue.md
+  (OS-001..OS-005). Classifications: Hermes/Directus/api-drift-ci/jest-openapi/openai-node = OWNER_SEND;
+  clickhousectl = DO_NOT_CONTACT (Rust SDK-drift workflow ≠ JS/node:test CLI; honesty guard, no invention).
+  A/B frames: drift(A) vs CI(B) per-prospect, tracked MKT-011 (low n, directional only).
+- cost: 0. deadline: 2026-10-11. metric: responses/positive/demo_interest/installs/activations.
+- failure_metric: 0 replies and 0 installs by deadline, or any sent message that was canned/low-relevance.
+- status: QUEUED — all posting needs owner GitHub account (no gh CLI, no Composio MCP, no token in env).
+  Do NOT repeat permission asks per no-repeat-ask rule; queue stays OWNER_SEND. decision: pending.
+
+### EXP-001-D14 — outreach send/response tracking (2026-09-11, lifecycle)
+- On each send: set `message_status: SENT` in marketing/prospects.jsonl (OS-xxx id), record reply
+  classification (PROBLEM_CONFIRMED/PROBLEM_NOT_PRIORITIZED/ALREADY_SOLVED/WRONG_TOOL/TOO_COMPLEX/
+  INTERESTED/WANTS_DEMO/WANTS_FEATURE/PRICE_OBJECTION/NO_RESPONSE), and append to this log.
+- Product signals from replies → marketing/voice-of-customer.jsonl (inbound) + DECISIONS.md when material.
+- No-reply policy: max 1 initial + 1 useful follow-up, then respect silence.
+
 ### EXP-001-D12 — first-10-user scoreboard + metric tracking (2026-09-11)
 - hypothesis: Direct-prospect channels plus autonomous distribution (openapi.tools, awesome-openapi3,
   npm, dev-centric outreach) reach 10 activated users faster than waiting on owner-bound launch posts.

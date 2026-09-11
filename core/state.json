@@ -88,23 +88,33 @@
       "p2_prospects": "marketing/prospects.jsonl created: 20 rows, 18 external targets. 3 P0 verbatim-drift-pain leads: HomericIntelligence/Hermes #431, directus/directus #27700, ClickHouse/clickhousectl #224 (issue labeled openapi-drift).",
       "experiments_added": "MKT-007 (outreach), MKT-008 (awesome-openapi3 auto-index), MKT-009 (personalized outreach queue)"
     },
+    "phase6_progress": {
+      "started_at": "2026-09-11",
+      "goal": "Convert documented OpenAPI-drift pain into first real users (10 prospects contacted, ≥3 replies, ≥2 trials, ≥1 activated)",
+      "outreach_queue": "marketing/outreach-queue.md — 5 personalized drafts (OS-001..OS-005): Hermes #431, Directus #27700, api-drift-ci, jest-openapi, openai-node. All OWNER_SEND (no gh CLI, no Composio MCP tools, no token in env).",
+      "do_not_contact": "ClickHouse clickhousectl #224 — Rust SDK-drift (codegen) workflow incompatible with JS/node:test CLI; classified honestly, no pitch. Custom `openapi-drift` label captured as VOC validation.",
+      "classifications": "OWNER_SEND (Hermes, Directus, api-drift-ci, jest-openapi, openai-node); DEFERRED (openapi-typescript, openapi-sentinel, apidrift, nestjs-express-openapi, express-swagger-auto, WorkOS, OAI/Spec); DO_NOT_CONTACT (clickhousectl, driftspec-competitor, openapi-test/dormant)",
+      "ab_test": "MKT-011 directional (low n): Frame A drift (OS-001, OS-004, OS-005) vs Frame B CI (OS-002, OS-003)",
+      "experiments": "MKT-010 (outreach), MKT-011 (A/B frames), MKT-012 (do-not-contact guard)"
+    },
     "top_opportunities_ranked": [
-      "Targeted GitHub outreach to 3 P0 drift-pain repos (Hermes/Directus/clickhousectl) — highest signal",
+      "Send OS-001 Hermes #431 — highest-signal (their issue is SpecCaster's thesis) — OWNER_SEND",
+      "Send OS-002 Directus #27700 — 37.9k-star project, open drift-catalog issue — OWNER_SEND",
+      "Send OS-004 jest-openapi — 38.6k weekly downloads = largest ICP audience — OWNER_SEND",
       "openapi.tools PR #828 (verified OPEN, pending merge)",
       "GitHub Action Marketplace listing (owner action needed)",
       "Show HN / r/node launch (owner approval needed)",
-      "Comparison page (done - compare.html)",
       "awesome-openapi3 auto-index (topic set; verify refresh)",
-      "Reddit community participation (owner approval needed)"
+      "Comparison page distribution (compare.html)"
     ]
   },
   "next_actions": [
     "run check-metrics daily; drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
-    "Phase 5 P3: draft 5-10 personalized outreach messages for prospects.jsonl P0/P1 rows (Hermes, Directus, clickhousectl, api-drift-ci, openai-node, openapi-typescript, jest-openapi)",
-    "Phase 5 outreach posting requires authenticated GitHub actions — queue for owner or composio MCP if authorized",
+    "Phase 6: owner sends OS-001..OS-005 (marketing/outreach-queue.md) then sets message_status=SENT",
+    "Phase 6: after each reply record classification (PROBLEM_CONFIRMED/INTERESTED/WANTS_DEMO/etc) in prospects.jsonl + VOC",
     "re-verify awesome-openapi3 auto-index once apis.guru endpoints return (currently 404)",
     "monitor openapi.tools PR #828 status (verified OPEN)",
-    "owner-bound queue unchanged: HN/Reddit/2FA npm automation/Lemon Squeezy (no repeat asks)",
+    "owner-bound queue unchanged: HN/Reddit/2FA npm automation/Lemon Squeezy + now GitHub outreach posts (no repeat asks)",
     "re-measure fresh-user audit each milestone; watch npm downloads counter (API lag → record unknown)",
     "deploy landing page SEO fixes, comparison page, blog structured data (Phase 1 commits)"
   ]
