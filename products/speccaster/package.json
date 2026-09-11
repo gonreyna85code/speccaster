@@ -1,6 +1,6 @@
 {
   "name": "speccaster",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "OpenAPI contract tests: zero-config generator for node:test with a CI drift gate. One command writes an owned, extendable test suite into your repo; your CI rejects spec drift.",
   "license": "MIT",
   "repository": {
@@ -19,7 +19,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node scripts/e2e.js"
+    "test": "node --test tests/unit.test.js && node scripts/e2e.js"
   },
   "dependencies": {
     "yaml": "^2.5.0"
