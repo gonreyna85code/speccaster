@@ -65,6 +65,9 @@ Launch block: npm publish token (owner). GitHub no longer blocks.
 - success_metric: demo path converges to `init` (activation), fewer dead-end installs.
   failure_metric: demo exits non-zero for users.
 - status: READY at 0.2.0, NOT published — npm token with 2FA bypass needed (INC-001).
+- PUBLISHED 2026-09-11: speccaster@0.2.0 live (latest). Verified from clean registry
+  install (init 0 / drift 0 / test 3/3 green). GitHub Release v0.2.0 + tag push CI green
+  (e2e 7/7 on Action runner). Discussions welcome thread live (/discussions/1). Resume result.
 
 ## Pricing evidence (2026-09-10)
 - Stoplight platform: Basic $44/mo → Pro Team $362/mo (per team, monthly). Spectral is free OSS.

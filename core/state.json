@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updated_at": "2026-09-10T23:55:00Z",
+  "updated_at": "2026-09-11T00:20:00Z",
   "status": "experimentation",
   "current_business": "SpecCaster — zero-config OpenAPI contract-test generator (dev tool)",
-  "current_strategy": "validate EXP-001 (adoption) before monetizing; refine activation (demo command); pricing evidence-collected; publish 0.2.0 blocked on npm 2FA-bypass token",
+  "current_strategy": "validate EXP-001 (adoption) before monetizing; activation-first (demo command); distribution experiments running; monetization prep = pricing evidence collected",
   "revenue": {
     "lifetime": 0.0,
     "current_month": 0.0
@@ -29,8 +29,8 @@
   "conversion_rate": null,
   "experiments": ["EXP-001"],
   "active_services": [
-    "SpecCaster npm package — PUBLISHED speccaster@0.1.1 (latest; 0.2.0 with demo command READY, publish blocked on npm granular 2FA-bypass token); URL https://www.npmjs.com/package/speccaster",
-    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live, main = c943cd8; topic openapi3 set",
+    "SpecCaster npm package — PUBLISHED speccaster@0.2.0 (latest; adds 'demo' activation command); verified from clean registry install (init 0 / drift 0 / test 3/3 green); URL https://www.npmjs.com/package/speccaster",
+    "SpecCaster GitHub repo (gonreyna85code/speccaster) — public, live; main = 0f9d59e; topic openapi3 set; GitHub Release v0.2.0 live (tag push CI green, npm publish auto-guarded until NPM_TOKEN secret set); Discussions live (welcome thread: /discussions/1)",
     "Landing on GitHub Pages (gonreyna85code.github.io/speccaster/) — verified HTTP 200"
   ],
   "metrics_baseline": {
@@ -38,7 +38,7 @@
     "github_stars": 0,
     "github_open_issues": 0,
     "landing_status": 200,
-    "recorded_at": "2026-09-10",
+    "recorded_at": "2026-09-11",
     "note": "npm downloads API not yet reporting (post-publish lag); check-metrics.js handles gracefully"
   },
   "incidents": [
@@ -47,17 +47,17 @@
       "id": "INC-001",
       "severity": "low",
       "title": "npm publish blocked: 2FA bypass required",
-      "description": "~/.npmrc holds the classic token (npm_SXNG...Hh5M) which authenticates but cannot publish (E403, bypass 2FA required). The granular bypass token (npm_E8Hz...R7wN) was in-memory only per policy and is not persisted anywhere recoverable. speccaster@0.2.0 (demo command) ready to publish once the bypass token is re-provided."
+      "description": "~/.npmrc holds the classic token (npm_SXNG...Hh5M) which authenticates but cannot publish (E403, bypass 2FA required). Owner re-provided the granular bypass token in-session on 2026-09-11; speccaster@0.2.0 published and verified. INC-001 resolved.",
+      "resolution": "2026-09-11 — owner re-supplied granular 2FA-bypass npm token; published 0.2.0, verified from clean registry install, tag pushed, GitHub Release + Discussions live."
     }
   ],
   "technical_health": "nominal",
   "financial_health": "unfunded",
   "next_actions": [
-    "OWNER: re-provide npm granular token with 2FA bypass (npm_E8Hz...R7wN uses it) OR add it as repo Actions secret NPM_TOKEN for automated tag-publish; .npmrc classic token will always fail",
-    "publish speccaster@0.2.0 (demo activation command), verify clean install, push v0.2.0 tag + GitHub Release notes",
-    "Start GitHub Discussions welcome post; run check-metrics daily; drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
+    "OWNER (optional): add NPM_TOKEN secret in repo Settings>Secrets/actions for automated tag-publish (until then CI skips publish with tests passing), and/or use the remaining granular token in-memory for future manual publishes",
+    "run check-metrics daily (memory/metrics.jsonl); drive EXP-001 (>=10 installs & >=20 stars by 2026-10-25)",
+    "community channel: owner posts Show HN / r/node from docs/LAUNCH.md (identity-bound; operator cannot post)",
     "owner provisions Lemon Squeezy account + API key + payout method -> enable fiat block",
-    "post Show HN / r/node / build-in-public update (copy ready in docs/LAUNCH.md)",
-    "calibrate Pro pricing when adoption data exists"
+    "monitor npm downloads counter (API lag), stars, issues weekly; calibrate Pro pricing when adoption data exists"
   ]
 }
